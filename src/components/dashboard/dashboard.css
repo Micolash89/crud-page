@@ -1,0 +1,83 @@
+/*dashboard*/
+
+.dashboard {
+  padding: 30px;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.dashboard__a {
+  padding: 15px;
+  width: fit-content;
+  height: fit-content;
+  justify-content: space-between;
+  border-radius: var(--radius-4);
+  min-width: 250px;
+  min-height: 170px;
+  transition: scale 0.6s;
+  box-shadow: 3px 3px 15px 0px var(--box-shadow);
+}
+
+.dashboard__a > div > span {
+  font-size: var(--txt-1);
+  font-weight: 400;
+  text-transform: capitalize;
+  color: var(--ligth-grey-400);
+}
+
+.dashboard__a > div {
+  /* gap: 15px; */
+}
+
+.dashboard__a > div > i {
+  font-size: var(--txt-5);
+  font-weight: 100;
+}
+
+.dashboard__a > span {
+  font-weight: 600;
+  align-self: flex-end;
+  font-size: var(--txt-6);
+  font-weight: 800;
+}
+
+#student {
+  background-color: var(--dark-red-200);
+}
+#student i {
+  color: var(--dark-red-100);
+}
+
+#course {
+  background-color: var(--dark-blue-200);
+}
+#course i {
+  color: var(--dark-blue-100);
+}
+
+#payments {
+  background-color: var(--ligth-yellow-500);
+}
+#payments i {
+  color: var(--ligth-yellow-100);
+}
+
+#user {
+  /* bacground bradiente */
+
+  background: linear-gradient(
+    to right,
+    var(--ligth-yellow-100),
+    var(--ligth-yellow-600)
+  );
+
+  color: var(--ligth-white-100);
+}
+
+#user > div > span {
+  color: var(--ligth-white-100);
+}
+
+.dashboard__a:hover {
+  transform: scale(1.1);
+}

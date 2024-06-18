@@ -1,0 +1,42 @@
+/*main header*/
+.main {
+  width: 100%;
+}
+
+.main__section {
+  padding: 20px 20px 0 20px;
+}
+
+.headerMain,
+.headerMain__button {
+  justify-content: space-between;
+  align-items: center;
+  color: var(--ligth-grey-100);
+  font-size: var(--txt-1);
+}
+
+.headerMain i {
+  font-size: var(--txt-2);
+}
+
+.headerMain__search {
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.headerMain__button,
+.headerMain__search > i {
+  cursor: pointer;
+}
+
+.headerMain__label {
+  border: 1px solid var(--ligth-grey-200);
+  border-radius: var(--radius-6);
+  padding: 5px;
+  gap: 15px;
+}
+
+#filter {
+  font-size: var(--txt-1);
+}
