@@ -1,5 +1,6 @@
 import React from "react";
 import "./header.css";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -21,28 +22,28 @@ function Header() {
         <nav className="header__nav">
           <ul className="flexcolum header__nav--ul">
             <li className="header__items">
-              <a href="Dashboard.html" className="flexrow">
+              <Link to={"/"} className="flexrow">
                 <span>Home</span>
                 <i className="ri-home-4-line"></i>
-              </a>
+              </Link>
             </li>
             <li className="header__items">
-              <a href="student.html" className="flexrow">
+              <Link to={"/table"} className="flexrow">
                 <span>Course</span>
                 <i className="ri-star-line"></i>
-              </a>
+              </Link>
             </li>
             <li className="header__items">
-              <a href="login.html" className="flexrow">
+              <Link to={"/table2"} className="flexrow">
                 <span>Payment</span>
                 <i className="ri-graduation-cap-line"></i>
-              </a>
+              </Link>
             </li>
             <li className="header__items">
-              <a href="index.html" className="flexrow">
+              <Link to="/login" className="flexrow">
                 <span>Report</span>
                 <i className=" ri-file-chart-line"></i>
-              </a>
+              </Link>
             </li>
             <li className="header__items">
               <a href=" " className="flexrow">
