@@ -1,49 +1,79 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./table2.css";
+import axios from "axios";
+import RowTable2 from "./RowTable2";
+import { END_POINTS } from "../../service/endPoints";
+import { useDispatch } from "react-redux";
+import { loaderOff, loaderOn } from "../../redux/features/LoaderSlice";
+import { messageError } from "../../redux/features/NotificationSlice";
 
-function Table2() {
+function Table2({ entidad }) {
+  const [data, setData] = useState(null);
+
+  const listHeader = [
+    "ID Profesor",
+    "nombre",
+    "apelldios",
+    "email",
+    "teléfono",
+    "estado",
+    "alta/baja",
+  ];
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    axios
+      .get(`${END_POINTS.URL()}/api/${entidad}/obtener`)
+      .then((result) => {
+        dispatch(loaderOn());
+        console.log(result.data.payload);
+        setData(result.data.payload);
+      })
+      .catch((err) => {
+        dispatch(messageError("Error para obtener los profesores"));
+        console.log(err);
+      })
+      .finally(() => {
+        dispatch(loaderOff());
+      });
+  }, []);
+
   return (
     <>
-      <section className=" main__section mainTable">
-        <h2 className="mainTable__h2">Payment Details</h2>
-        <table className="mainTable__table">
-          <thead className="mainTable__table--thead">
-            <tr>
-              <th>Name</th>
-              <th>Payment Schedule</th>
-              <th>Bill Number</th>
-              <th>Amount Paid</th>
-              <th>Balance Amount</th>
-              <th>Date</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody className="mainTable__table--tbody">
-            <tr>
-              <td>Juan Pérez</td>
-              <td>Mensual</td>
-              <td>12345</td>
-              <td>$100.00</td>
-              <td>$50.00</td>
-              <td>2024-06-08</td>
-              <td className="icon">
-                <i className="ri-eye-line"></i>
-              </td>
-            </tr>
-            <tr>
-              <td>María López</td>
-              <td>Semanal</td>
-              <td>12346</td>
-              <td>$200.00</td>
-              <td>$0.00</td>
-              <td>2024-06-07</td>
-              <td className="icon">
-                <i className="ri-eye-line"></i>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
+      {data && (
+        <section className=" main__section mainTable">
+          <h2 className="mainTable__h2">Payment Details</h2>
+          <table className="mainTable__table">
+            <thead className="mainTable__table--thead">
+              <tr>
+                {listHeader.map((item, index) => {
+                  return (
+                    <>
+                      <th key={index}>{item}</th>
+                    </>
+                  );
+                })}
+              </tr>
+            </thead>
+            <tbody className="mainTable__table--tbody">
+              {data.map((item, index) => {
+                return (
+                  <RowTable2
+                    key={`${index} RowTable2`}
+                    nombre={item.nombre}
+                    apellido={item.apellido}
+                    email={item.email}
+                    estado={item.estado}
+                    telefono={item.telefono}
+                    id_profesor={item.id_profesor}
+                  />
+                );
+              })}
+            </tbody>
+          </table>
+        </section>
+      )}
     </>
   );
 }

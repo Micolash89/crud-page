@@ -17,6 +17,30 @@ import Table2 from "./components/table2/Table2";
 function App() {
   const [count, setCount] = useState(0);
 
+  const listHeaderAlumnos = [
+    "",
+    "ID Profesor",
+    "nombre",
+    "apellido",
+    "email",
+    "teléfono",
+    "estado",
+    "alta/baja",
+    "",
+  ];
+
+  const listHeaderProfesores = [
+    "",
+    "ID Profesor",
+    "nombre",
+    "apellido",
+    "email",
+    "teléfono",
+    "estado",
+    "alta/baja",
+    "",
+  ];
+
   return (
     <>
       <ThemeProvider>
@@ -24,8 +48,16 @@ function App() {
         <Main>
           <Routes>
             <Route path="/" element={<Dashboard />} />
-            <Route path="/table" element={<Table />} />
-            <Route path="/table2" element={<Table2 />} />
+            <Route
+              path="/table"
+              element={
+                <Table
+                  listaCabecera={listHeaderProfesores}
+                  entidad="profesores"
+                />
+              }
+            />
+            <Route path="/table2" element={<Table2 entidad="profesores" />} />
             <Route path="/login" element={<Login />} />
           </Routes>
         </Main>

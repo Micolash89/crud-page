@@ -1,7 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./table.css";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { END_POINTS } from "../../service/endPoints";
+import { loaderOff, loaderOn } from "../../redux/features/LoaderSlice";
+import { messageError } from "../../redux/features/NotificationSlice";
+import TableProfesores from "./TableProfesores";
 
-function Table() {
+function Table({ entidad, listaCabecera }) {
+  const [data, setData] = useState(null);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    axios
+      .get(`${END_POINTS.URL()}/api/${entidad}/obtener`)
+      .then((result) => {
+        dispatch(loaderOn());
+        setData(result.data.payload);
+      })
+      .catch((err) => {
+        dispatch(messageError("Error para obtener los profesores"));
+        console.log(err);
+      })
+      .finally(() => {
+        dispatch(loaderOff());
+      });
+  }, []);
+
   return (
     <>
       <section className="crud">
@@ -15,61 +40,32 @@ function Table() {
         <table className="crud__table">
           <thead className="crud__table--thead">
             <tr>
-              <th></th>
-              <th>Name</th>
-              <th>email</th>
-              <th>Phone</th>
-              <th>Enroll Number</th>
-              <th>Date of admission</th>
-              <th></th>
+              {listaCabecera.map((item, index) => {
+                return <th key={`${index} listaCabecera${item}`}>{item}</th>;
+              })}
             </tr>
           </thead>
           <tbody className="crud__table--tbody">
-            <tr>
-              <td>
-                <img src="images/pablo.png" alt="avatar" />
-              </td>
-              <td>Juan Pérez</td>
-              <td>karthi@gmmail.com</td>
-              <td>7305477760</td>
-              <td>1234567305477760</td>
-              <td>08-Dec, 2021</td>
-
-              <td className="icon">
-                <i className="ri-pencil-line"></i>
-                <i className="ri-delete-bin-6-line"></i>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <img src="images/pablo.png" alt="avatar" />
-              </td>
-              <td>Juan Pérez</td>
-              <td>karthi@gmmail.com</td>
-              <td>7305477760</td>
-              <td>1234567305477760</td>
-              <td>08-Dec, 2021</td>
-
-              <td className="icon">
-                <i className="ri-pencil-line"></i>
-                <i className="ri-delete-bin-6-line"></i>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <img src="images/pablo.png" alt="avatar" />
-              </td>
-              <td>Juan Pérez</td>
-              <td>karthi@gmmail.com</td>
-              <td>7305477760</td>
-              <td>1234567305477760</td>
-              <td>08-Dec, 2021</td>
-
-              <td className="icon">
-                <i className="ri-pencil-line"></i>
-                <i className="ri-delete-bin-6-line"></i>
-              </td>
-            </tr>
+            {entidad == "profesores" &&
+              data &&
+              data.map((element, index) => {
+                return (
+                  <TableProfesores
+                    key={`${index} RowTable${element.nombre}`}
+                    item={element}
+                  />
+                );
+              })}
+            {entidad == "alumnos" &&
+              data &&
+              data.map((element, index) => {
+                return (
+                  <TableProfesores
+                    key={`${index} RowTable${element.nombre}`}
+                    item={element}
+                  />
+                );
+              })}
           </tbody>
         </table>
       </section>

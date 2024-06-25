@@ -1,37 +1,48 @@
 import "./dashboard.css";
+import ItemDashboard from "./ItemDashboard";
 
 function Dashboard() {
+  const items = [
+    {
+      id: "student",
+      icon: "ri-graduation-cap-line",
+      content: "estudiantes",
+      span: "123",
+      url: "/",
+    },
+    {
+      id: "course",
+      icon: "ri-mind-map",
+      content: "profesores",
+      span: "123",
+      url: "/table",
+    },
+    {
+      id: "payments",
+      icon: "ri-function-fill",
+      content: "cursos",
+      span: "123",
+      url: "table2",
+    },
+    {
+      id: "user",
+      icon: "ri-user-line",
+      content: "inscripciones",
+      span: "123",
+      url: "/login",
+    },
+  ];
+
   return (
     <>
       <section className="flexrow dashboard">
-        <a href="student.html" className="flexrow dashboard__a" id="student">
-          <div className="flexcolum">
-            <i className="ri-graduation-cap-line"></i>
-            <span>Student</span>
-          </div>
-          <span>1231</span>
-        </a>
-        <a href="index.html" className="flexrow dashboard__a" id="course">
-          <div className="flexcolum">
-            <i className="ri-mind-map"></i>
-            <span>Student</span>
-          </div>
-          <span>1231</span>
-        </a>
-        <a href="dashboard.html" className="flexrow dashboard__a" id="payments">
-          <div className="flexcolum">
-            <i className="ri-function-fill"></i>
-            <span>menu</span>
-          </div>
-          <span>1231</span>
-        </a>
-        <a href="login.html" className="flexrow dashboard__a" id="user">
-          <div className="flexcolum">
-            <i className="ri-user-line"></i>
-            <span>login</span>
-          </div>
-          <span>1231</span>
-        </a>
+        {items.map((element, index) => {
+          return (
+            <>
+              <ItemDashboard key={`${index} itemsDashBoard`} item={element} />
+            </>
+          );
+        })}
       </section>
     </>
   );

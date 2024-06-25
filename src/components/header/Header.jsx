@@ -3,6 +3,34 @@ import "./header.css";
 import { Link } from "react-router-dom";
 
 function Header() {
+  const itemsHeader = [
+    {
+      name: "Home",
+      link: "/",
+      icon: "ri-home-4-line",
+    },
+    {
+      name: "Course",
+      link: "/table",
+      icon: "ri-star-line",
+    },
+    {
+      name: "Payment",
+      link: "/table2",
+      icon: "ri-graduation-cap-line",
+    },
+    {
+      name: "Report",
+      link: "/login",
+      icon: "ri-file-chart-line",
+    },
+    {
+      name: "Settings",
+      link: "/",
+      icon: "ri-sound-module-line",
+    },
+  ];
+
   return (
     <>
       <header className="flexcolum header">
@@ -21,36 +49,16 @@ function Header() {
 
         <nav className="header__nav">
           <ul className="flexcolum header__nav--ul">
-            <li className="header__items">
-              <Link to={"/"} className="flexrow">
-                <span>Home</span>
-                <i className="ri-home-4-line"></i>
-              </Link>
-            </li>
-            <li className="header__items">
-              <Link to={"/table"} className="flexrow">
-                <span>Course</span>
-                <i className="ri-star-line"></i>
-              </Link>
-            </li>
-            <li className="header__items">
-              <Link to={"/table2"} className="flexrow">
-                <span>Payment</span>
-                <i className="ri-graduation-cap-line"></i>
-              </Link>
-            </li>
-            <li className="header__items">
-              <Link to="/login" className="flexrow">
-                <span>Report</span>
-                <i className=" ri-file-chart-line"></i>
-              </Link>
-            </li>
-            <li className="header__items">
-              <a href=" " className="flexrow">
-                <span>Settings</span>
-                <i className=" ri-sound-module-line"></i>
-              </a>
-            </li>
+            {itemsHeader.map((item, index) => {
+              return (
+                <li key={`${index} itemsHeader`} className="header__items">
+                  <Link to={item.link} className="flexrow">
+                    <span>{item.name}</span>
+                    <i className={`${item.icon}`}></i>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 

@@ -1,14 +1,15 @@
 import React from "react";
 import "./mainHeader.css";
+import { Link } from "react-router-dom";
 
 function MainHeader() {
   return (
     <>
       <section className="main__section">
         <header className=" flexrow main__section--header headerMain">
-          <button className="headerMain__button">
+          <Link to={"/"} className="headerMain__button">
             <i className="ri-arrow-left-circle-line"></i>
-          </button>
+          </Link>
 
           <div className="flexrow headerMain__search">
             <label htmlFor="filter" className=" flexrow headerMain__label">

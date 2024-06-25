@@ -19,6 +19,19 @@
   font-size: var(--txt-2);
 }
 
+.headerMain__button > i {
+  font-size: var(--txt-3);
+}
+.headerMain__button {
+  transition: scale 0.4s, color 0.4s;
+}
+.headerMain__button:hover {
+  /*rotar */
+  /* transform: rotate(15deg); */
+  scale: 1.2;
+  color: var(--ligth-yellow-100);
+}
+
 .headerMain__search {
   justify-content: center;
   align-items: center;
