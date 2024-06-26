@@ -56,19 +56,20 @@ function Table2({ entidad }) {
             </tr>
           </thead>
           <tbody className="mainTable__table--tbody">
-            {data.map((item, index) => {
-              return (
-                <RowTable2
-                  key={`${index} RowTable2`}
-                  nombre={item.nombre}
-                  apellido={item.apellido}
-                  email={item.email}
-                  estado={item.estado}
-                  telefono={item.telefono}
-                  id_profesor={item.id_profesor}
-                />
-              );
-            })}
+            {data &&
+              data.map((item, index) => {
+                return (
+                  <RowTable2
+                    key={`${index} RowTable2`}
+                    nombre={item.nombre}
+                    apellido={item.apellido}
+                    email={item.email}
+                    estado={item.estado}
+                    telefono={item.telefono}
+                    id_profesor={item.id_profesor}
+                  />
+                );
+              })}
           </tbody>
         </table>
       </section>
