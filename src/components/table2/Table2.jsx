@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./table2.css";
 import axios from "axios";
 import RowTable2 from "./RowTable2";
@@ -41,39 +41,37 @@ function Table2({ entidad }) {
 
   return (
     <>
-      {data && (
-        <section className=" main__section mainTable">
-          <h2 className="mainTable__h2">Payment Details</h2>
-          <table className="mainTable__table">
-            <thead className="mainTable__table--thead">
-              <tr>
-                {listHeader.map((item, index) => {
-                  return (
-                    <>
-                      <th key={index}>{item}</th>
-                    </>
-                  );
-                })}
-              </tr>
-            </thead>
-            <tbody className="mainTable__table--tbody">
-              {data.map((item, index) => {
+      <section className=" main__section mainTable">
+        <h2 className="mainTable__h2">Payment Details</h2>
+        <table className="mainTable__table">
+          <thead className="mainTable__table--thead">
+            <tr>
+              {listHeader.map((item, index) => {
                 return (
-                  <RowTable2
-                    key={`${index} RowTable2`}
-                    nombre={item.nombre}
-                    apellido={item.apellido}
-                    email={item.email}
-                    estado={item.estado}
-                    telefono={item.telefono}
-                    id_profesor={item.id_profesor}
-                  />
+                  <>
+                    <th key={index}>{item}</th>
+                  </>
                 );
               })}
-            </tbody>
-          </table>
-        </section>
-      )}
+            </tr>
+          </thead>
+          <tbody className="mainTable__table--tbody">
+            {data.map((item, index) => {
+              return (
+                <RowTable2
+                  key={`${index} RowTable2`}
+                  nombre={item.nombre}
+                  apellido={item.apellido}
+                  email={item.email}
+                  estado={item.estado}
+                  telefono={item.telefono}
+                  id_profesor={item.id_profesor}
+                />
+              );
+            })}
+          </tbody>
+        </table>
+      </section>
     </>
   );
 }
