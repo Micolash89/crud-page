@@ -6,6 +6,7 @@ import { END_POINTS } from "../../service/endPoints";
 import { loaderOff, loaderOn } from "../../redux/features/LoaderSlice";
 import { messageError } from "../../redux/features/NotificationSlice";
 import TableProfesores from "./TableProfesores";
+import { profesorFormOn } from "../../redux/features/ProfesorForm";
 
 function Table({ entidad, listaCabecera }) {
   const [data, setData] = useState(null);
@@ -31,10 +32,17 @@ function Table({ entidad, listaCabecera }) {
     <>
       <section className="crud">
         <div className="flexrow crud__div">
-          <h2 className="crud__div--h2">Student List</h2>
+          <h2 className="crud__div--h2">{entidad} Lista</h2>
           <div className="flexrow crud__div--div">
             <i className="ri-expand-up-down-line"></i>
-            <button>Add new Student</button>
+            <button
+              onClick={() => {
+                dispatch(profesorFormOn());
+              }}
+            >
+              <i className="ri-add-line"></i>
+              {entidad}
+            </button>
           </div>
         </div>
         <table className="crud__table">

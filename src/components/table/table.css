@@ -17,6 +17,7 @@
 .crud__div--h2 {
   font-size: var(--txt-13);
   font-weight: bold;
+  text-transform: capitalize;
 }
 
 .crud__div--div {
@@ -36,12 +37,24 @@
   background-color: var(--ligth-yellow-100);
   padding: 10px 20px;
   border-radius: var(--radius-6);
-  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out,
+    scale 0.3s ease-in-out;
   cursor: pointer;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
+
+.crud__div--div > button > i {
+  font-weight: 900;
+  font-size: var(--txt-7);
+}
+
 .crud__div--div > button:hover {
   background-color: var(--ligth-yellow-400);
   color: var(--dark-black-100);
+  scale: 1.1;
 }
 
 /*crud table*/

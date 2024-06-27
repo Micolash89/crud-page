@@ -13,6 +13,7 @@ import Table from "./components/table/Table";
 import Loader from "./components/loaders/Loader";
 import Login from "./components/login/Login";
 import Table2 from "./components/table2/Table2";
+import ProfesorForm from "./components/form/ProfesorForm";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -63,6 +64,7 @@ function App() {
         </Main>
 
         <Loader />
+        <ProfesorForm />
 
         <Notification />
       </ThemeProvider>
