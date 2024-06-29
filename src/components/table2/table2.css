@@ -2,9 +2,27 @@
 .mainTable__table {
   width: 100%;
 }
+
 .mainTable__h2,
 .mainTable__table--thead {
   background-color: var(--ligth-yellow-300);
+}
+
+.mainTable {
+  max-height: calc(100vh - 65px);
+  height: 100vh !important;
+  overflow: scroll;
+  /* overflow: hidden; */
+  overflow-x: hidden;
+}
+
+.mainTable__table {
+  position: relative;
+}
+
+.mainTable__table--thead {
+  position: sticky;
+  top: 0;
 }
 
 .mainTable__h2 {
@@ -41,6 +59,7 @@
 .mainTable__table--tbody {
   background-color: var(--ligth-white-100);
 }
+
 .mainTable__table--tbody > :nth-child(even) {
   background-color: var(--ligth-yellow-300);
 }

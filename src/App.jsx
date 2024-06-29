@@ -14,17 +14,18 @@ import Loader from "./components/loaders/Loader";
 import Login from "./components/login/Login";
 import Table2 from "./components/table2/Table2";
 import ProfesorForm from "./components/form/ProfesorForm";
+import ProfesorUpdate from "./components/profesorUpdate/ProfesorUpdate";
 
 function App() {
   const [count, setCount] = useState(0);
 
   const listHeaderAlumnos = [
     "",
-    "ID Profesor",
+    "ID alumno",
     "nombre",
     "apellido",
     "email",
-    "teléfono",
+    "fecha nacimiento",
     "estado",
     "alta/baja",
     "",
@@ -65,6 +66,7 @@ function App() {
 
         <Loader />
         <ProfesorForm />
+        <ProfesorUpdate />
 
         <Notification />
       </ThemeProvider>

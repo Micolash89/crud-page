@@ -1,0 +1,37 @@
+.profesorUpdate {
+  /* animation: fade-down 0.5s 0.4s backwards; */
+  opacity: 1;
+
+  transition: opacity 0.8s;
+}
+
+.profesorUpdateActive {
+  /* transition: none; */
+  transition: opacity 0.8s;
+  /* animation: fade-up 0.5s 0.4s backwards; */
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes fade-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0x) scale(1);
+  }
+}
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(0px) scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(-50px) scale(0.9);
+  }
+}

@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
 import "./table.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { END_POINTS } from "../../service/endPoints";
 import { loaderOff, loaderOn } from "../../redux/features/LoaderSlice";
 import { messageError } from "../../redux/features/NotificationSlice";
 import TableProfesores from "./TableProfesores";
-import { profesorFormOn } from "../../redux/features/ProfesorForm";
+import { profesorFormOn } from "../../redux/features/ProfesorFormSlice";
+import TableAlumnos from "./TableAlumnos";
 
 function Table({ entidad, listaCabecera }) {
   const [data, setData] = useState(null);
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  const recargarPagina = useSelector((state) => state.recargar.state);
+
+  const handleSubmit = () => {
     axios
       .get(`${END_POINTS.URL()}/api/${entidad}/obtener`)
       .then((result) => {
@@ -26,7 +29,13 @@ function Table({ entidad, listaCabecera }) {
       .finally(() => {
         dispatch(loaderOff());
       });
-  }, []);
+  };
+
+  useEffect(() => {
+    handleSubmit();
+  }, [recargarPagina]);
+
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -45,37 +54,39 @@ function Table({ entidad, listaCabecera }) {
             </button>
           </div>
         </div>
-        <table className="crud__table">
-          <thead className="crud__table--thead">
-            <tr>
-              {listaCabecera.map((item, index) => {
-                return <th key={`${index} listaCabecera${item}`}>{item}</th>;
-              })}
-            </tr>
-          </thead>
-          <tbody className="crud__table--tbody">
-            {entidad == "profesores" &&
-              data &&
-              data.map((element, index) => {
-                return (
-                  <TableProfesores
-                    key={`${index} RowTable${element.nombre}`}
-                    item={element}
-                  />
-                );
-              })}
-            {entidad == "alumnos" &&
-              data &&
-              data.map((element, index) => {
-                return (
-                  <TableProfesores
-                    key={`${index} RowTable${element.nombre}`}
-                    item={element}
-                  />
-                );
-              })}
-          </tbody>
-        </table>
+        <section className="crud__table--container">
+          <table className="crud__table">
+            <thead className="crud__table--thead">
+              <tr>
+                {listaCabecera.map((item, index) => {
+                  return <th key={`${index} listaCabecera${item}`}>{item}</th>;
+                })}
+              </tr>
+            </thead>
+            <tbody className="crud__table--tbody">
+              {entidad == "profesores" &&
+                data &&
+                data.map((element, index) => {
+                  return (
+                    <TableProfesores
+                      key={`${index} RowTable${element.nombre}`}
+                      item={element}
+                    />
+                  );
+                })}
+              {entidad == "alumnos" &&
+                data &&
+                data.map((element, index) => {
+                  return (
+                    <TableAlumnos
+                      key={`${index} RowTable${element.nombre}`}
+                      item={element}
+                    />
+                  );
+                })}
+            </tbody>
+          </table>
+        </section>
       </section>
     </>
   );

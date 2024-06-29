@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./profesorForm.css";
-import { profesorFormOff } from "../../redux/features/ProfesorForm";
-import { useState } from "react";
+import { profesorFormOff } from "../../redux/features/ProfesorFormSlice";
+import { useEffect, useState } from "react";
 import {
   messageError,
   messageOk,
@@ -9,10 +9,11 @@ import {
 import { END_POINTS } from "../../service/endPoints";
 import axios from "axios";
 import { loaderOff, loaderOn } from "../../redux/features/LoaderSlice";
+import { recargarActualizar } from "../../redux/features/RecargarSlice";
 
 function ProfesorForm() {
+  const dispatch = useDispatch();
   const profesorFormState = useSelector((state) => state.profesorForm.state);
-  const [data, setData] = useState("");
 
   const [formData, setFormData] = useState({
     nombre: "",
@@ -29,12 +30,23 @@ function ProfesorForm() {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSetForm = () => {
+    dispatch(profesorFormOff());
+    setFormData({
+      nombre: "",
+      apellido: "",
+      email: "",
+      telefono: 0,
+      password: "",
+    });
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log("entré en el handleSubmit");
     dispatch(loaderOn());
 
-    await axios
+    axios
       .post(`${END_POINTS.URL()}/api/profesores/subir`, formData, {
         withCredentials: true,
       })
@@ -48,6 +60,8 @@ function ProfesorForm() {
           telefono: 0,
           password: "",
         });
+        dispatch(profesorFormOff());
+        dispatch(recargarActualizar());
       })
       .catch((error) => {
         console.log(error);
@@ -59,8 +73,6 @@ function ProfesorForm() {
       });
   };
 
-  const dispatch = useDispatch();
-
   //dispatch(profesorFormOff());
   //dispatch(profesorFormOn());
 
@@ -71,12 +83,7 @@ function ProfesorForm() {
           profesorFormState ? "" : "profesorFormActive"
         }`}
       >
-        <div
-          className="profesorForm__container--icon"
-          onClick={() => {
-            dispatch(profesorFormOff());
-          }}
-        >
+        <div className="profesorForm__container--icon" onClick={handleSetForm}>
           <i className="ri-close-line"></i>
         </div>
         <section className="flexcolum login__container profesorForm__container">
@@ -96,6 +103,7 @@ function ProfesorForm() {
               <label className="flexcolum" htmlFor="nameInput">
                 nombre
                 <input
+                  value={formData.nombre}
                   onChange={handleInputChange}
                   type="text"
                   name="nombre"
@@ -106,6 +114,7 @@ function ProfesorForm() {
               <label className="flexcolum" htmlFor="lastNameInput">
                 apellido
                 <input
+                  value={formData.apellido}
                   onChange={handleInputChange}
                   type="text"
                   name="apellido"
@@ -116,6 +125,7 @@ function ProfesorForm() {
               <label className="flexcolum" htmlFor="emailInput">
                 email
                 <input
+                  value={formData.email}
                   onChange={handleInputChange}
                   type="email"
                   name="email"
@@ -126,6 +136,7 @@ function ProfesorForm() {
               <label className="flexcolum" htmlFor="phoneInput">
                 telefono
                 <input
+                  value={formData.telefono}
                   onChange={handleInputChange}
                   type="tel"
                   name="telefono"
@@ -137,6 +148,7 @@ function ProfesorForm() {
               <label className="flexcolum" htmlFor="password">
                 Password
                 <input
+                  value={formData.password}
                   onChange={handleInputChange}
                   type="password"
                   name="password"

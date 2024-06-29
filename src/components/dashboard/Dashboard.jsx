@@ -38,9 +38,10 @@ function Dashboard() {
       <section className="flexrow dashboard">
         {items.map((element, index) => {
           return (
-            <>
-              <ItemDashboard key={`${index} itemsDashBoard`} item={element} />
-            </>
+            <ItemDashboard
+              key={`${index}__${element.id}__dashboard`}
+              item={element}
+            />
           );
         })}
       </section>

@@ -55,11 +55,12 @@ function Table2({ entidad }) {
               })}
             </tr>
           </thead>
-          <tbody className="mainTable__table--tbody">
+          <tbody className="mainTable__table--tbody mttbody">
             {data &&
               data.map((item, index) => {
                 return (
                   <RowTable2
+                    className="mttbody__row"
                     key={`${index} RowTable2`}
                     nombre={item.nombre}
                     apellido={item.apellido}

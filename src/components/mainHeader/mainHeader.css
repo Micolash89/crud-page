@@ -50,6 +50,13 @@
   gap: 15px;
 }
 
+.headerMain__label > i {
+  cursor: pointer;
+}
+.headerMain__label > i:hover {
+  color: var(--dark-black-100);
+}
+
 #filter {
   font-size: var(--txt-1);
 }

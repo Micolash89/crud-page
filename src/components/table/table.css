@@ -66,9 +66,24 @@
 .crud__table {
   width: 100%;
 }
+
+.crud__table--container {
+  max-height: calc(100vh - 170px);
+  height: 100%;
+  overflow: scroll;
+  position: relative;
+  overflow-x: hidden;
+}
+
 .crud__h2,
 .crud__table--thead {
   background-color: var(--ligth-yellow-300);
+}
+
+.crud__table--thead {
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid;
 }
 
 .crud__h2 {
@@ -127,4 +142,8 @@
   color: var(--ligth-yellow-100);
   font-size: var(--txt-2);
   cursor: pointer;
+}
+
+.crud__table--tbody i:hover {
+  color: var(--dark-black-100);
 }
