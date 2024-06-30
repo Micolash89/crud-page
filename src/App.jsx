@@ -45,6 +45,23 @@ function App() {
     "",
   ];
 
+  const listHeaderCursos = [
+    "ID curso",
+    "curso",
+    "descripcion",
+    "profesor",
+    "estado",
+    "ver",
+  ];
+
+  const listHeaderInscripciones = [
+    "ID Inscripcion",
+    "curso",
+    "fecha de inscripción",
+    "alumno",
+    "ver",
+  ];
+
   return (
     <>
       <ThemeProvider>
@@ -68,7 +85,23 @@ function App() {
               }
             />
 
-            <Route path="/cursos" element={<Table2 entidad="cursos" />} />
+            <Route
+              path="/cursos"
+              element={
+                <Table2 entidad="cursos" listHeader={listHeaderCursos} />
+              }
+            />
+
+            <Route
+              path="/cursoinscripcion/:id"
+              element={
+                <Table2
+                  entidad="inscripciones"
+                  listHeader={listHeaderInscripciones}
+                />
+              }
+            />
+
             <Route path="/login" element={<Login />} />
           </Routes>
         </Main>
