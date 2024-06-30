@@ -3,8 +3,10 @@ import notificationReducer from "./features/NotificationSlice";
 import loaderReducer from "./features/LoaderSlice";
 import userReducer from "./features/UserSlice";
 import profesorFormReducer from "./features/ProfesorFormSlice";
+import alumnosFormReducer from "./features/AlumnoFormSlice";
 import recargarReducer from "./features/RecargarSlice";
 import profesorUpdateReducer from "./features/ProfesorUpdateSlice";
+import alumnoUpdateReducer from "./features/AlumnoUpdateSlice";
 
 
 export const store = configureStore({
@@ -13,7 +15,9 @@ export const store = configureStore({
         loader: loaderReducer,
         user: userReducer,
         profesorForm: profesorFormReducer,
+        alumnoForm: alumnosFormReducer,
         recargar: recargarReducer,
         profesorUpdate: profesorUpdateReducer,
+        alumnoUpdate: alumnoUpdateReducer,
     }
 });

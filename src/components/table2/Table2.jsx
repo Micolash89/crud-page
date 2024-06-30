@@ -47,11 +47,7 @@ function Table2({ entidad }) {
           <thead className="mainTable__table--thead">
             <tr>
               {listHeader.map((item, index) => {
-                return (
-                  <>
-                    <th key={index}>{item}</th>
-                  </>
-                );
+                return <th key={`${index}__listHeader`}>{item}</th>;
               })}
             </tr>
           </thead>

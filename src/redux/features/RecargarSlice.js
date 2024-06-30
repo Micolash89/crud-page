@@ -17,6 +17,6 @@ export const recargarSlice = createSlice({
     }
 });
 
-export const { recargarOn, recargarOff, recargarActualizar } = recargarSlice.actions;
+export const { recargarActualizar } = recargarSlice.actions;
 
 export default recargarSlice.reducer;

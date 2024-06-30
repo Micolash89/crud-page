@@ -1,25 +1,24 @@
-import { useDispatch, useSelector } from "react-redux";
-import "./profesorForm.css";
-import { profesorFormOff } from "../../redux/features/ProfesorFormSlice";
 import { useState } from "react";
+import { alumnosFormOff } from "../../redux/features/AlumnoFormSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { loaderOff, loaderOn } from "../../redux/features/LoaderSlice";
+import axios from "axios";
+import { END_POINTS } from "../../service/endPoints";
 import {
   messageError,
   messageOk,
 } from "../../redux/features/NotificationSlice";
-import { END_POINTS } from "../../service/endPoints";
-import axios from "axios";
-import { loaderOff, loaderOn } from "../../redux/features/LoaderSlice";
 import { recargarActualizar } from "../../redux/features/RecargarSlice";
 
-function ProfesorForm() {
+function AlumnosForm() {
   const dispatch = useDispatch();
-  const profesorFormState = useSelector((state) => state.profesorForm.state);
+  const alumnoFormState = useSelector((state) => state.alumnoForm.state);
 
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
     email: "",
-    telefono: 0,
+    fecha_nacimiento: "",
     password: "",
   });
 
@@ -31,12 +30,12 @@ function ProfesorForm() {
   };
 
   const handleSetForm = () => {
-    dispatch(profesorFormOff());
+    dispatch(alumnosFormOff());
     setFormData({
       nombre: "",
       apellido: "",
       email: "",
-      telefono: 0,
+      fecha_nacimiento: "",
       password: "",
     });
   };
@@ -47,7 +46,7 @@ function ProfesorForm() {
     dispatch(loaderOn());
 
     axios
-      .post(`${END_POINTS.URL()}/api/profesores/subir`, formData, {
+      .post(`${END_POINTS.URL()}/api/alumnos/subir`, formData, {
         withCredentials: true,
       })
       .then((response) => {
@@ -57,10 +56,10 @@ function ProfesorForm() {
           nombre: "",
           apellido: "",
           email: "",
-          telefono: 0,
+          fecha_nacimiento: "",
           password: "",
         });
-        dispatch(profesorFormOff());
+        dispatch(alumnosFormOff());
         dispatch(recargarActualizar());
       })
       .catch((error) => {
@@ -73,14 +72,11 @@ function ProfesorForm() {
       });
   };
 
-  //dispatch(profesorFormOff());
-  //dispatch(profesorFormOn());
-
   return (
     <>
       <section
         className={`flexcolum login profesorForm ${
-          profesorFormState ? "" : "profesorFormActive"
+          alumnoFormState ? "" : "profesorFormActive"
         }`}
       >
         <div className="profesorForm__container--icon" onClick={handleSetForm}>
@@ -88,7 +84,7 @@ function ProfesorForm() {
         </div>
         <section className="flexcolum login__container profesorForm__container">
           <section className="flexcolum login__title profesorForm__container--title pct">
-            <h2 className="login__section--h2 pct__title">ingresar Profesor</h2>
+            <h2 className="login__section--h2 pct__title">ingresar Alumno</h2>
             {/* <div className="flexcolum login__section--div pct__infoTitle">
               <h3>sing in</h3>
               <p>Enter your credentials to access your account</p>
@@ -100,59 +96,59 @@ function ProfesorForm() {
               onSubmit={handleSubmit}
               className="flexcolum login__section--form profesorForm__formSection--form pffsf"
             >
-              <label className="flexcolum" htmlFor="nameInput">
+              <label className="flexcolum" htmlFor="nameInput__alu">
                 nombre
                 <input
                   value={formData.nombre}
                   onChange={handleInputChange}
                   type="text"
                   name="nombre"
-                  id="nameInput"
+                  id="nameInput__alu"
                   placeholder="roberto"
                 />
               </label>
-              <label className="flexcolum" htmlFor="lastNameInput">
+              <label className="flexcolum" htmlFor="lastNameInput__alu">
                 apellido
                 <input
                   value={formData.apellido}
                   onChange={handleInputChange}
                   type="text"
                   name="apellido"
-                  id="lastNameInput"
+                  id="lastNameInput__alu"
                   placeholder="perez"
                 />
               </label>
-              <label className="flexcolum" htmlFor="emailInput">
+              <label className="flexcolum" htmlFor="emailInput_alu">
                 email
                 <input
                   value={formData.email}
                   onChange={handleInputChange}
                   type="email"
                   name="email"
-                  id="emailInput"
+                  id="emailInput_alu"
                   placeholder="example@example"
                 />
               </label>
-              <label className="flexcolum" htmlFor="phoneInput">
-                telefono
+              <label className="flexcolum" htmlFor="fecha_nac">
+                fecha Nacimiento
                 <input
                   value={formData.telefono}
                   onChange={handleInputChange}
-                  type="tel"
-                  name="telefono"
-                  id="phoneInput"
+                  type="date"
+                  name="fecha_nacimiento"
+                  id="fecha_nac"
                   placeholder="########"
                 />
               </label>
 
-              <label className="flexcolum" htmlFor="password">
+              <label className="flexcolum" htmlFor="password__alu">
                 Password
                 <input
                   value={formData.password}
                   onChange={handleInputChange}
                   type="password"
                   name="password"
-                  id="password"
+                  id="password__alu"
                   placeholder="123456"
                 />
               </label>
@@ -170,4 +166,4 @@ function ProfesorForm() {
   );
 }
 
-export default ProfesorForm;
+export default AlumnosForm;

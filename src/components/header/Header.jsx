@@ -1,8 +1,11 @@
-import React from "react";
+import { useDispatch } from "react-redux";
 import "./header.css";
 import { Link } from "react-router-dom";
+import { recargarActualizar } from "../../redux/features/RecargarSlice";
 
 function Header() {
+  const dispatch = useDispatch();
+
   const itemsHeader = [
     {
       name: "Home",
@@ -10,23 +13,23 @@ function Header() {
       icon: "ri-home-4-line",
     },
     {
-      name: "Course",
-      link: "/table",
-      icon: "ri-star-line",
+      name: "profesores",
+      link: "/profesores",
+      icon: "ri-briefcase-line",
     },
     {
-      name: "Payment",
-      link: "/table2",
+      name: "alumnos",
+      link: "/alumnos",
       icon: "ri-graduation-cap-line",
     },
     {
-      name: "Report",
-      link: "/login",
-      icon: "ri-file-chart-line",
+      name: "cursos",
+      link: "/cursos",
+      icon: "ri-file-list-line",
     },
     {
-      name: "Settings",
-      link: "/",
+      name: "Perfil",
+      link: "/perfil",
       icon: "ri-sound-module-line",
     },
   ];
@@ -34,7 +37,7 @@ function Header() {
   return (
     <>
       <header className="flexcolum header">
-        <h1 className="header__h1"> CRUD OPERATIONS</h1>
+        <h1 className="header__h1"> CRUD operaciones</h1>
         <section className="flexcolum header__section">
           <div className="picture_profile">
             <img
@@ -51,7 +54,11 @@ function Header() {
           <ul className="flexcolum header__nav--ul">
             {itemsHeader.map((item, index) => {
               return (
-                <li key={`${index} itemsHeader`} className="header__items">
+                <li
+                  key={`${index} itemsHeader`}
+                  className="header__items"
+                  onClick={() => dispatch(recargarActualizar())}
+                >
                   <Link to={item.link} className="flexrow">
                     <span>{item.name}</span>
                     <i className={`${item.icon}`}></i>

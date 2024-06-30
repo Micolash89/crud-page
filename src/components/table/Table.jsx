@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./table.css";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -8,6 +8,7 @@ import { messageError } from "../../redux/features/NotificationSlice";
 import TableProfesores from "./TableProfesores";
 import { profesorFormOn } from "../../redux/features/ProfesorFormSlice";
 import TableAlumnos from "./TableAlumnos";
+import { alumnosFormOn } from "../../redux/features/AlumnoFormSlice";
 
 function Table({ entidad, listaCabecera }) {
   const [data, setData] = useState(null);
@@ -20,6 +21,7 @@ function Table({ entidad, listaCabecera }) {
       .get(`${END_POINTS.URL()}/api/${entidad}/obtener`)
       .then((result) => {
         dispatch(loaderOn());
+        console.log(result.data.payload);
         setData(result.data.payload);
       })
       .catch((err) => {
@@ -35,7 +37,9 @@ function Table({ entidad, listaCabecera }) {
     handleSubmit();
   }, [recargarPagina]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    handleSubmit();
+  }, []);
 
   return (
     <>
@@ -46,7 +50,9 @@ function Table({ entidad, listaCabecera }) {
             <i className="ri-expand-up-down-line"></i>
             <button
               onClick={() => {
-                dispatch(profesorFormOn());
+                entidad == "profesores"
+                  ? dispatch(profesorFormOn())
+                  : dispatch(alumnosFormOn());
               }}
             >
               <i className="ri-add-line"></i>

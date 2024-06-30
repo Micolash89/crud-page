@@ -25,8 +25,11 @@
   color: var(--ligth-grey-400);
 }
 
-.dashboard__a > div {
+.dashboard__a {
   /* gap: 15px; */
+  /* opacity: 0; */
+  /* animation: fade-up 0.5s 0.4s backwards; */
+  /* opacity: 1; */
 }
 
 .dashboard__a > div > i {

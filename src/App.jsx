@@ -15,6 +15,8 @@ import Login from "./components/login/Login";
 import Table2 from "./components/table2/Table2";
 import ProfesorForm from "./components/form/ProfesorForm";
 import ProfesorUpdate from "./components/profesorUpdate/ProfesorUpdate";
+import AlumnosForm from "./components/form/AlumnoForm";
+import AlumnosUpdate from "./alumnoUpdate/AlumnoUpdate";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -51,7 +53,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route
-              path="/table"
+              path="/profesores"
               element={
                 <Table
                   listaCabecera={listHeaderProfesores}
@@ -59,15 +61,23 @@ function App() {
                 />
               }
             />
-            <Route path="/table2" element={<Table2 entidad="profesores" />} />
+            <Route
+              path="/alumnos"
+              element={
+                <Table listaCabecera={listHeaderAlumnos} entidad="alumnos" />
+              }
+            />
+
+            <Route path="/cursos" element={<Table2 entidad="cursos" />} />
             <Route path="/login" element={<Login />} />
           </Routes>
         </Main>
 
         <Loader />
         <ProfesorForm />
+        <AlumnosForm />
         <ProfesorUpdate />
-
+        <AlumnosUpdate />
         <Notification />
       </ThemeProvider>
     </>

@@ -3,33 +3,33 @@ import ItemDashboard from "./ItemDashboard";
 
 function Dashboard() {
   const items = [
-    {
-      id: "student",
-      icon: "ri-graduation-cap-line",
-      content: "estudiantes",
-      span: "123",
-      url: "/",
-    },
+    // {
+    //   id: "student",
+    //   icon: "ri-function-fill ",
+    //   content: "Home",
+    //   span: "123",
+    //   url: "/",
+    // },
     {
       id: "course",
-      icon: "ri-mind-map",
+      icon: "ri-briefcase-line",
       content: "profesores",
       span: "123",
-      url: "/table",
+      url: "/profesores",
     },
     {
       id: "payments",
-      icon: "ri-function-fill",
-      content: "cursos",
+      icon: "ri-graduation-cap-line",
+      content: "alumnos",
       span: "123",
-      url: "table2",
+      url: "/alumnos",
     },
     {
-      id: "user",
-      icon: "ri-user-line",
-      content: "inscripciones",
+      id: "student",
+      icon: "ri-file-list-line",
+      content: "cursos",
       span: "123",
-      url: "/login",
+      url: "/cursos",
     },
   ];
 
