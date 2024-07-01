@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { recargarActualizar } from "../../redux/features/RecargarSlice";
 
 function RowTableCursos({ item }) {
-  const dispatch = useDispatch();
-
   return (
     <>
       {item && (
@@ -21,7 +19,7 @@ function RowTableCursos({ item }) {
           </td>
           <td>{item.estado}</td>
           <td className="icon">
-            <Link to={`/cursoinscripcion/${item.id_curso}`}>
+            <Link to={`/inscripciones/${item.id_curso}`}>
               <i className="ri-eye-line"></i>
             </Link>
           </td>

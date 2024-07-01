@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function RowInscripciones({ item }) {
   const [dayNow, setDayNow] = useState(null);
+
+  //const recargarPagina = useSelector((state) => state.recargar.state);
 
   const format = (date, locale, options) =>
     new Intl.DateTimeFormat(locale, options).format(date);
@@ -18,7 +20,7 @@ function RowInscripciones({ item }) {
 
   return (
     <>
-      {item && item.length > 0 && (
+      {item && (
         <tr>
           <td>{item.id_inscripcion}</td>
           <td>{item.nombre_curso}</td>

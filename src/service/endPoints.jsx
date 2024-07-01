@@ -1,5 +1,5 @@
 export const END_POINTS = {
-  NODE_ENV: "production",
+  NODE_ENV: "dev",
   PROD: "https://backend-crud-api-rest-cac.onrender.com",
   DEV: "http://localhost:8080",
   URL: function () {

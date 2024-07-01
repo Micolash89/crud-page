@@ -1,25 +1,41 @@
-import { useEffect, useState } from "react";
-import "./table2.css";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { END_POINTS } from "../../service/endPoints";
-import { useDispatch, useSelector } from "react-redux";
 import { loaderOff, loaderOn } from "../../redux/features/LoaderSlice";
 import {
   messageError,
   messageOk,
 } from "../../redux/features/NotificationSlice";
-import RowTableCursos from "./RowTableCursos";
+import RowInscripciones from "./RowInscripciones";
 
-function Table2({ entidad, listHeader }) {
+function InscripcionesTable() {
+  const entidad = "inscripciones";
+
+  const listHeader = [
+    "ID Inscripcion",
+    "curso",
+    "fecha de inscripción",
+    "alumno",
+    "ver",
+  ];
+
   const [data, setData] = useState(null);
 
-  const recargarPagina = useSelector((state) => state.recargar.state);
+  //const recargarPagina = useSelector((state) => state.recargar.state);
 
   const dispatch = useDispatch();
 
+  const { id } = useParams();
+
+  useEffect(() => {
+    handleSubmit();
+  }, [id]);
+
   const handleSubmit = () => {
     axios
-      .get(`${END_POINTS.URL()}/api/${entidad}/obtener`)
+      .get(`${END_POINTS.URL()}/api/${entidad}/obtener${!id ? "" : `/${id}`}`)
       .then((result) => {
         dispatch(loaderOn());
         console.log(result.data.payload);
@@ -39,9 +55,9 @@ function Table2({ entidad, listHeader }) {
     handleSubmit();
   }, []);
 
-  useEffect(() => {
-    handleSubmit();
-  }, [recargarPagina]);
+  //   useEffect(() => {
+  //     handleSubmit();
+  //   }, [recargarPagina]);
 
   return (
     <>
@@ -56,13 +72,11 @@ function Table2({ entidad, listHeader }) {
             </tr>
           </thead>
           <tbody className="mainTable__table--tbody mttbody">
-            {entidad == "cursos" &&
-              data &&
+            {data &&
               data.map((item, index) => {
                 return (
-                  <RowTableCursos
-                    className="mttbody__row"
-                    key={`${index} RowTable2`}
+                  <RowInscripciones
+                    key={`inscripciones_${index}`}
                     item={item}
                   />
                 );
@@ -74,4 +88,4 @@ function Table2({ entidad, listHeader }) {
   );
 }
 
-export default Table2;
+export default InscripcionesTable;

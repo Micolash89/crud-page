@@ -17,6 +17,8 @@ import ProfesorForm from "./components/form/ProfesorForm";
 import ProfesorUpdate from "./components/profesorUpdate/ProfesorUpdate";
 import AlumnosForm from "./components/form/AlumnoForm";
 import AlumnosUpdate from "./alumnoUpdate/AlumnoUpdate";
+import InscripcionesTable from "./components/inscripcionesTable/InscripcionesTable";
+import Search from "./components/search/Search";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -54,14 +56,6 @@ function App() {
     "ver",
   ];
 
-  const listHeaderInscripciones = [
-    "ID Inscripcion",
-    "curso",
-    "fecha de inscripción",
-    "alumno",
-    "ver",
-  ];
-
   return (
     <>
       <ThemeProvider>
@@ -92,15 +86,8 @@ function App() {
               }
             />
 
-            <Route
-              path="/cursoinscripcion/:id"
-              element={
-                <Table2
-                  entidad="inscripciones"
-                  listHeader={listHeaderInscripciones}
-                />
-              }
-            />
+            <Route path="/inscripciones/:id" element={<InscripcionesTable />} />
+            <Route path="/search/:filtro" element={<Search />} />
 
             <Route path="/login" element={<Login />} />
           </Routes>
