@@ -1,7 +1,5 @@
 import { useState } from "react";
-
 import "./App.css";
-import { ThemeProvider } from "./components/context/ThemeContext";
 import "./css/variables.css";
 import "./css/estilosGenericos.css";
 import Header from "./components/header/Header";
@@ -58,48 +56,44 @@ function App() {
 
   return (
     <>
-      <ThemeProvider>
-        <Header />
-        <Main>
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route
-              path="/profesores"
-              element={
-                <Table
-                  listaCabecera={listHeaderProfesores}
-                  entidad="profesores"
-                />
-              }
-            />
-            <Route
-              path="/alumnos"
-              element={
-                <Table listaCabecera={listHeaderAlumnos} entidad="alumnos" />
-              }
-            />
+      <Header />
+      <Main>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route
+            path="/profesores"
+            element={
+              <Table
+                listaCabecera={listHeaderProfesores}
+                entidad="profesores"
+              />
+            }
+          />
+          <Route
+            path="/alumnos"
+            element={
+              <Table listaCabecera={listHeaderAlumnos} entidad="alumnos" />
+            }
+          />
 
-            <Route
-              path="/cursos"
-              element={
-                <Table2 entidad="cursos" listHeader={listHeaderCursos} />
-              }
-            />
+          <Route
+            path="/cursos"
+            element={<Table2 entidad="cursos" listHeader={listHeaderCursos} />}
+          />
 
-            <Route path="/inscripciones/:id" element={<InscripcionesTable />} />
-            <Route path="/search/:filtro" element={<Search />} />
+          <Route path="/inscripciones/:id" element={<InscripcionesTable />} />
+          <Route path="/search/:filtro" element={<Search />} />
 
-            <Route path="/login" element={<Login />} />
-          </Routes>
-        </Main>
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Main>
 
-        <Loader />
-        <ProfesorForm />
-        <AlumnosForm />
-        <ProfesorUpdate />
-        <AlumnosUpdate />
-        <Notification />
-      </ThemeProvider>
+      <Loader />
+      <ProfesorForm />
+      <AlumnosForm />
+      <ProfesorUpdate />
+      <AlumnosUpdate />
+      <Notification />
     </>
   );
 }
