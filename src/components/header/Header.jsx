@@ -1,10 +1,46 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { recargarActualizar } from "../../redux/features/RecargarSlice";
+import { logOutSession, setSession } from "../../redux/features/UserSlice";
+import { useEffect } from "react";
+import axios from "axios";
+import { END_POINTS } from "../../service/endPoints";
+import Cookies from "js-cookie";
 
 function Header() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logOutSession());
+    Cookies.remove("crudCookieToken");
+    navigate("/login");
+  };
+
+  const sessionState = useSelector((state) => state.user.session);
+  const sessionUser = useSelector((state) => state.user.user);
+  const theme = useSelector((state) => state.theme.theme);
+
+  useEffect(() => {
+    const cookieToken = Cookies.get("crudCookieToken");
+
+    if (!cookieToken) return;
+
+    axios
+      .get(`${END_POINTS.URL()}/api/session/current`, {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${cookieToken}`,
+        },
+      })
+      .then((response) => {
+        dispatch(setSession(response.data.profesor));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const itemsHeader = [
     {
@@ -36,19 +72,23 @@ function Header() {
 
   return (
     <>
-      <header className="flexcolum header">
+      <header className={`flexcolum header ${theme}`}>
         <h1 className="header__h1"> CRUD operaciones</h1>
-        <section className="flexcolum header__section">
-          <div className="picture_profile">
-            <img
-              className="header__section--img"
-              src="images/pablo.png"
-              alt="avatar"
-            />
-          </div>
-          <span className="header__section--span">Karthi Madesh</span>
-          <span className="header__section--span">Admin</span>
-        </section>
+        {sessionState && (
+          <section className="flexcolum header__section">
+            <div className="picture_profile">
+              <img
+                className="header__section--img"
+                src={sessionUser.url}
+                alt="avatar"
+              />
+            </div>
+            <span className="header__section--span">
+              {sessionUser.nombre} {sessionUser.apellido}
+            </span>
+            <span className="header__section--span">{sessionUser.role}</span>
+          </section>
+        )}
 
         <nav className="header__nav">
           <ul className="flexcolum header__nav--ul">
@@ -69,10 +109,17 @@ function Header() {
           </ul>
         </nav>
 
-        <a href="" className="flexrow header__logout">
-          <span>Logout</span>
-          <i className="ri-logout-box-r-line"></i>
-        </a>
+        {sessionState ? (
+          <button onClick={handleLogout} className="flexrow header__logout">
+            <i className="ri-logout-box-r-line"></i>
+            <span>Salir</span>
+          </button>
+        ) : (
+          <Link to={"/login"} className="flexrow header__logout">
+            <i className="ri-user-line"></i>
+            <span>Inicio Session</span>
+          </Link>
+        )}
       </header>
     </>
   );

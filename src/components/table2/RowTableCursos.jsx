@@ -1,6 +1,4 @@
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { recargarActualizar } from "../../redux/features/RecargarSlice";
 
 function RowTableCursos({ item }) {
   return (

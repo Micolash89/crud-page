@@ -38,6 +38,7 @@ body,
 #root {
   width: 100vw;
   height: 100vh;
+  background-color: var(--ligth-white-100);
 }
 
 .flexrow {
@@ -102,3 +103,11 @@ table {
     }
     
     */
+
+.dark {
+  --dark-black-100: #ffffff !important;
+
+  --ligth-white-100: #4e4d4d;
+
+  --box-shadow: rgba(128, 125, 125, 0.329);
+}

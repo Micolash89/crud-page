@@ -1,7 +1,10 @@
+import { useSelector } from "react-redux";
 import "./dashboard.css";
 import ItemDashboard from "./ItemDashboard";
 
 function Dashboard() {
+  const theme = useSelector((state) => state.theme.theme);
+
   const items = [
     // {
     //   id: "student",
@@ -35,7 +38,7 @@ function Dashboard() {
 
   return (
     <>
-      <section className="flexrow dashboard">
+      <section className={`flexrow dashboard ${theme}`}>
         {items.map((element, index) => {
           return (
             <ItemDashboard
