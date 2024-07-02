@@ -39,3 +39,31 @@
   color: var(--dark-black-100);
   background-color: var(--ligth-white-100);
 }
+
+.profesorForm__container {
+  padding: 15px;
+}
+
+.pffsf input {
+  padding: 10px;
+}
+
+.profesorForm__container2 {
+  gap: 10px;
+}
+
+.pct__title2 {
+  font-size: var(--txt-2);
+}
+
+.pffsf2 input,
+.pffsf2 select {
+  padding: 7px;
+}
+
+.pffsf2 > label > span {
+  font-size: var(--txt-9);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

@@ -8,11 +8,6 @@ function RowTableCursos({ item }) {
           <td>{item.id_curso}</td>
           <td>{item.nombre_curso}</td>
           <td>
-            {item.descripcion.length > 20
-              ? item.descripcion.substring(0, 20) + "..."
-              : item.descripcion}
-          </td>
-          <td>
             {item.nombre_profesor} {item.apellido}
           </td>
           <td>{item.estado}</td>

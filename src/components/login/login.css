@@ -82,9 +82,10 @@
   color: var(--dark-black-100);
 }
 
-.login__section--form input {
+.login__section--form input,
+.login__section--form select {
   border: 1px solid var(--ligth-grey-200);
-  color: var(--ligth-grey-500);
+  /* color: var(--ligth-grey-500); */
   border-radius: var(--radius-6);
   padding: 15px;
   font-size: var(--txt-12);

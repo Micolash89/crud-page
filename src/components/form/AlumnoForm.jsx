@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { alumnosFormOff } from "../../redux/features/AlumnoFormSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { loaderOff, loaderOn } from "../../redux/features/LoaderSlice";
@@ -14,12 +14,14 @@ function AlumnosForm() {
   const dispatch = useDispatch();
   const alumnoFormState = useSelector((state) => state.alumnoForm.state);
 
+  const [cursosData, setCursosData] = useState(null);
+
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
     email: "",
     fecha_nacimiento: "",
-    password: "",
+    id_curso: 0,
   });
 
   const handleInputChange = (event) => {
@@ -36,15 +38,26 @@ function AlumnosForm() {
       apellido: "",
       email: "",
       fecha_nacimiento: "",
-      password: "",
+      id_curso: 0,
     });
+  };
+
+  const getCursos = () => {
+    axios
+      .get(`${END_POINTS.URL()}/api/cursos/obtener`)
+      .then((response) => {
+        setCursosData(response.data.payload);
+      })
+      .catch(() => {
+        dispatch(messageError("Error al obtener los cursos"));
+      });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("entré en el handleSubmit");
     dispatch(loaderOn());
-
+    console.log(formData);
     axios
       .post(`${END_POINTS.URL()}/api/alumnos/subir`, formData, {
         withCredentials: true,
@@ -57,7 +70,7 @@ function AlumnosForm() {
           apellido: "",
           email: "",
           fecha_nacimiento: "",
-          password: "",
+          id_curso: 0,
         });
         dispatch(alumnosFormOff());
         dispatch(recargarActualizar());
@@ -71,6 +84,11 @@ function AlumnosForm() {
         window.scrollTo(0, 0);
       });
   };
+
+  useEffect(() => {
+    getCursos();
+    console.log(cursosData);
+  }, []);
 
   return (
     <>
@@ -141,16 +159,29 @@ function AlumnosForm() {
                 />
               </label>
 
-              <label className="flexcolum" htmlFor="password__alu">
-                Password
-                <input
-                  value={formData.password}
+              <label className="flexcolum" htmlFor="curso">
+                seleccione un curso
+                <select
+                  name="id_curso"
+                  // value={formData.id_curso}
                   onChange={handleInputChange}
-                  type="password"
-                  name="password"
-                  id="password__alu"
-                  placeholder="123456"
-                />
+                >
+                  <option selected hidden value={""}>
+                    Seleccione un curso
+                  </option>
+                  {cursosData &&
+                    cursosData.map((item, index) => {
+                      return (
+                        <option
+                          value={item.id_curso}
+                          key={`${index}__cursos__option`}
+                        >
+                          {item.nombre_curso} - {item.nombre_profesor}{" "}
+                          {item.apellido}
+                        </option>
+                      );
+                    })}
+                </select>
               </label>
 
               <button type="submit">registrar</button>

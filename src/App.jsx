@@ -17,6 +17,7 @@ import AlumnosForm from "./components/form/AlumnoForm";
 import AlumnosUpdate from "./alumnoUpdate/AlumnoUpdate";
 import InscripcionesTable from "./components/inscripcionesTable/InscripcionesTable";
 import Search from "./components/search/Search";
+import PreLoader from "./components/preLoader/PreLoader";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -45,17 +46,11 @@ function App() {
     "",
   ];
 
-  const listHeaderCursos = [
-    "ID curso",
-    "curso",
-    "descripcion",
-    "profesor",
-    "estado",
-    "ver",
-  ];
+  const listHeaderCursos = ["ID curso", "curso", "profesor", "estado", "ver"];
 
   return (
     <>
+      <PreLoader />
       <Header />
       <Main>
         <Routes>

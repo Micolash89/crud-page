@@ -27,6 +27,7 @@ function ProfesorUpdate() {
     apellido: "",
     email: "",
     telefono: 0,
+    role: "",
   });
 
   useEffect(() => {
@@ -37,6 +38,7 @@ function ProfesorUpdate() {
         apellido: profesorUpdateValue.apellido,
         email: profesorUpdateValue.email,
         telefono: profesorUpdateValue.telefono,
+        role: profesorUpdateValue.role,
       });
   }, [profesorUpdateState]);
 
@@ -103,7 +105,7 @@ function ProfesorUpdate() {
             <section className="flexcolum login__section profesorForm__formSection">
               <form
                 onSubmit={handleSubmit}
-                className="flexcolum login__section--form profesorForm__formSection--form pffsf"
+                className="flexcolum login__section--form profesorForm__formSection--form "
               >
                 <label className="flexcolum" htmlFor="nameInputUpdate">
                   nombre
@@ -148,6 +150,21 @@ function ProfesorUpdate() {
                     id="phoneInputUpdate"
                     placeholder="########"
                   />
+                </label>
+
+                <label className="flexcolum" htmlFor="role">
+                  seleccione un rol:
+                  <select
+                    name="role"
+                    value={formData.role}
+                    onChange={handleInputChange}
+                  >
+                    <option selected hidden>
+                      Seleccione un Rol:
+                    </option>
+                    <option value="ADMIN">ADMIN</option>
+                    <option value="PROFESOR">PROFESOR</option>
+                  </select>
                 </label>
 
                 <button type="submit">Actualizar</button>
