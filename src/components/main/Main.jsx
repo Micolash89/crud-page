@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import { useSelector } from "react-redux";
 import MainHeader from "../mainHeader/MainHeader";
 import "./main.css";
 
 function Main({ children }) {
-  const { theme } = useContext(ThemeContext);
+  const theme = useSelector((state) => state.theme.theme);
 
   return (
     <main className={`flexcolum main ${theme}`}>
