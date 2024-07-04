@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./mainHeader.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { themeDark, themeLigth } from "../../redux/features/ThemeSlice";
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,7 @@ function MainHeader() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation().pathname;
 
   const themeValue = useSelector((state) => state.theme.state);
   const theme = useSelector((state) => state.theme.theme);
@@ -50,8 +51,12 @@ function MainHeader() {
 
   return (
     <>
-      <section className={`main__section ${theme}`}>
-        <header className=" flexrow main__section--header headerMain">
+      <section
+        className={`main__section ${theme} ${
+          location == "/login" ? "headerMainLocation" : ""
+        }`}
+      >
+        <header className={`flexrow main__section--header headerMain `}>
           <Link to={"/"} className="headerMain__button">
             <i className="ri-arrow-left-circle-line"></i>
           </Link>

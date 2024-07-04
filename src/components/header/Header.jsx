@@ -80,7 +80,7 @@ function Header() {
           }}
         >
           {" "}
-          CRUD operaciones
+          operaciones CRUD
         </h1>
         {sessionState && (
           <section className="flexcolum header__section">
@@ -105,7 +105,7 @@ function Header() {
                 <li
                   key={`${index} itemsHeader`}
                   className={`header__items ${
-                    item.link == location ? "header__items--activo" : ""
+                    item.link == location ? "header__item--activo" : ""
                   }`}
                   onClick={() => dispatch(recargarActualizar())}
                 >

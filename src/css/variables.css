@@ -19,9 +19,20 @@
   --ligth-yellow-400: #feae0086;
   --ligth-yellow-500: #fefbec;
   --ligth-yellow-600: #f8d442;
+  --ligth-yellow-700: #ffff00;
+
+  --ligth-beige-100: #fae7cd;
+  --ligth-beige-200: #d6c6b0;
+  --ligth-beige-300: #ada08e;
+  --ligth-beige-400: #5c554b;
+  --ligth-beige-500: #fae7cd4d;
+  --ligth-beige-600: #5c554b;
+  --ligth-beige-700: #706a62;
+  --ligth-beige-800: #fae7cd4d;
 
   --dark-green-100: #249b3e;
   --dark-green-200: #eff7ef;
+  --dark-green-300: #249b3e94;
 
   --dark-blue-100: #74c1ed;
   --dark-blue-200: #f0f9ff;
@@ -29,6 +40,7 @@
   --dark-red-100: rgb(255, 0, 0);
   --dark-red-200: #fef6fb;
   --dark-red-300: rgba(255, 0, 0, 0.493);
+  --dark-red-400: rgb(133, 53, 53);
 
   --box-shadow: rgba(0, 0, 0, 0.1);
 

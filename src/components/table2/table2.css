@@ -3,21 +3,32 @@
   width: 100%;
 }
 
+.mainTable__table--thead {
+  background-color: var(--ligth-beige-800);
+  transition: background-color 0.6s, color 0.6s;
+}
+
 .mainTable__h2,
 .mainTable__table--thead {
-  background-color: var(--ligth-yellow-300);
+  color: var(--dark-black-100);
 }
 
 .mainTable {
   max-height: calc(100vh - 65px);
   height: 100vh !important;
   overflow: scroll;
-  /* overflow: hidden; */
   overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .mainTable__table {
   position: relative;
+}
+
+.mainTable__div {
+  padding: 0 15px;
+  background-color: var(--ligth-white-100);
+  transition: background-color 0.6s, color 0.6s;
 }
 
 .mainTable__table--thead {
@@ -27,9 +38,8 @@
 
 .mainTable__h2 {
   padding: 15px 0;
-  border-bottom: 1px solid var(--ligth-grey-200);
   text-transform: capitalize;
-  font-size: var(--txt-2);
+  font-size: var(--txt-13);
 }
 
 .mainTable__table > .mainTable__table--thead > tr > th:first-child,
@@ -47,7 +57,7 @@
 .mainTable__table--thead > tr > th {
   color: var(--ligth-grey-300);
   font-size: var(--txt-12);
-  text-transform: capitalize;
+  text-transform: uppercase;
   font-weight: 300;
 }
 
@@ -58,14 +68,21 @@
 
 .mainTable__table--tbody {
   background-color: var(--ligth-white-100);
+  color: var(--dark-black-100);
+  transition: background-color 0.6s, color 0.4s;
 }
 
 .mainTable__table--tbody > :nth-child(even) {
-  background-color: var(--ligth-yellow-300);
+  background-color: var(--ligth-beige-500);
 }
 
 .mainTable__table--tbody i {
   color: var(--ligth-yellow-100);
   font-size: var(--txt-2);
   cursor: pointer;
+}
+
+.mainTable__table--tbody td,
+.mainTable__table--thead th {
+  text-align: center;
 }

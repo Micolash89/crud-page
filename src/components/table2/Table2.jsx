@@ -45,7 +45,9 @@ function Table2({ entidad, listHeader }) {
   return (
     <>
       <section className=" main__section mainTable">
-        <h2 className="mainTable__h2">{entidad}</h2>
+        <div className="mainTable__div">
+          <h2 className="mainTable__h2">{entidad}</h2>
+        </div>
         <table className="mainTable__table">
           <thead className="mainTable__table--thead">
             <tr>

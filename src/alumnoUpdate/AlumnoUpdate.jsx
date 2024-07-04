@@ -8,6 +8,7 @@ import { recargarActualizar } from "../redux/features/RecargarSlice";
 import { alumnoUpdateOff } from "../redux/features/AlumnoUpdateSlice";
 
 function AlumnosUpdate() {
+  const [cursosData, setCursosData] = useState(null);
   const dispatch = useDispatch();
   const alumnoUpdateState = useSelector((state) => state.alumnoUpdate.state);
   const alumnoUpdateValue = useSelector((state) => state.alumnoUpdate.value);
@@ -37,6 +38,7 @@ function AlumnosUpdate() {
       apellido: alumnoUpdateValue.apellido,
       email: alumnoUpdateValue.email,
       fecha_nacimiento: formatDateToInput(alumnoUpdateValue.fecha_nacimiento),
+      id_curso: alumnoUpdateValue.id_curso,
     });
   }, [alumnoUpdateState]);
 
@@ -74,6 +76,21 @@ function AlumnosUpdate() {
         window.scrollTo(0, 0);
       });
   };
+
+  const getCursos = () => {
+    axios
+      .get(`${END_POINTS.URL()}/api/cursos/obtener`)
+      .then((response) => {
+        setCursosData(response.data.payload);
+      })
+      .catch(() => {
+        dispatch(messageError("Error al obtener los cursos"));
+      });
+  };
+
+  useEffect(() => {
+    getCursos();
+  }, []);
 
   return (
     <>
@@ -148,6 +165,30 @@ function AlumnosUpdate() {
                     id="dateInputUpdate__alu"
                     placeholder="########"
                   />
+                </label>
+                <label className="flexcolum" htmlFor="id_curso">
+                  seleccione un curso
+                  <select
+                    name="id_curso"
+                    // value={formData.id_curso}
+                    onChange={handleInputChange}
+                  >
+                    <option selected hidden value={formData.id_curso}>
+                      {alumnoUpdateValue.nombre_curso}
+                    </option>
+                    {cursosData &&
+                      cursosData.map((item, index) => {
+                        return (
+                          <option
+                            value={item.id_curso}
+                            key={`${index}__cursos__option`}
+                          >
+                            {item.nombre_curso} - {item.nombre_profesor}{" "}
+                            {item.apellido}
+                          </option>
+                        );
+                      })}
+                  </select>
                 </label>
 
                 <button type="submit">Actualizar</button>

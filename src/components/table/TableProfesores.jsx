@@ -54,21 +54,23 @@ function TableProfesores({ item }) {
         <td>
           <i
             className={
-              item.estado ? "ri-user-follow-line" : "ri-user-forbid-line"
+              item.estado
+                ? "ri-user-follow-line cttbody__active"
+                : "ri-user-forbid-line cttbody__inactive"
             }
             title={item.estado ? "activo" : "inactivo"}
           ></i>
         </td>
         <td className="icon">
           <i
-            className="ri-user-settings-line"
+            className="ri-user-settings-line cttbody__modify"
             onClick={handleActiveFormUpdate}
             title="modificar"
           ></i>
         </td>
         <td className="icon">
           <i
-            className="ri-user-unfollow-line"
+            className="ri-delete-bin-6-line cttbody__delete"
             title="eliminar"
             onClick={handleDelete}
           ></i>

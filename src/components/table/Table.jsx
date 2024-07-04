@@ -47,7 +47,7 @@ function Table({ entidad, listaCabecera }) {
         <div className="flexrow crud__div">
           <h2 className="crud__div--h2">Lista {entidad}</h2>
           <div className="flexrow crud__div--div">
-            <i className="ri-expand-up-down-line"></i>
+            {/* <i className="ri-expand-up-down-line"></i> */}
             <button
               onClick={() => {
                 entidad == "profesores"
@@ -69,7 +69,7 @@ function Table({ entidad, listaCabecera }) {
                 })}
               </tr>
             </thead>
-            <tbody className="crud__table--tbody">
+            <tbody className="crud__table--tbody cttbody">
               {entidad == "profesores" &&
                 data &&
                 data.map((element, index) => {

@@ -63,23 +63,28 @@ function TableAlumnos({ item }) {
           <td>{item.email}</td>
           <td>{dayNow}</td>
           <td>
+            {item.nombre_curso} ({item.id_curso})
+          </td>
+          <td>
             <i
               className={
-                item.estado ? "ri-user-follow-line" : "ri-user-forbid-line"
+                item.estado
+                  ? "ri-user-follow-line cttbody__active"
+                  : "ri-user-forbid-line cttbody__inactive"
               }
               title={item.estado ? "activo" : "inactivo"}
             ></i>
           </td>
           <td className="icon">
             <i
-              className="ri-user-settings-line"
+              className="ri-user-settings-line cttbody__modify"
               title="modificar"
               onClick={handleActiveFormUpdate}
             ></i>
           </td>
           <td className="icon">
             <i
-              className="ri-user-unfollow-line"
+              className="ri-delete-bin-6-line cttbody__delete"
               title="eliminar"
               onClick={handleDelete}
             ></i>

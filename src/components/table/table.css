@@ -30,11 +30,11 @@
 }
 
 .crud__div--div > button {
-  color: var(--ligth-white-100);
+  color: white;
   font-size: var(--txt-1);
   text-transform: uppercase;
   font-weight: 500;
-  background-color: var(--ligth-yellow-100);
+  background-color: var(--dark-green-100);
   padding: 10px 20px;
   border-radius: var(--radius-6);
   transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out,
@@ -52,7 +52,7 @@
 }
 
 .crud__div--div > button:hover {
-  background-color: var(--ligth-yellow-400);
+  background-color: var(--dark-green-300);
   color: var(--dark-black-100);
   scale: 1.1;
 }
@@ -77,7 +77,7 @@
 
 .crud__h2,
 .crud__table--thead {
-  background-color: var(--ligth-yellow-300);
+  background-color: var(--ligth-beige-800);
 }
 
 .crud__table--thead {
@@ -122,7 +122,7 @@
 .crud__table--thead > tr > th {
   color: var(--ligth-grey-300);
   font-size: var(--txt-12);
-  text-transform: capitalize;
+  text-transform: uppercase;
   font-weight: 300;
 }
 
@@ -133,17 +133,43 @@
 
 .crud__table--tbody {
   background-color: var(--ligth-white-100);
+  color: var(--dark-black-100);
+  transition: background-color 0.6s, color 0.6s;
 }
 .crud__table--tbody > :nth-child(even) {
-  background-color: var(--ligth-yellow-300);
+  background-color: var(--ligth-beige-500);
+}
+
+.cttbody td,
+.crud__table--thead th {
+  text-align: center;
 }
 
 .crud__table--tbody i {
-  color: var(--ligth-yellow-100);
-  font-size: var(--txt-2);
+  font-size: var(--txt-6);
   cursor: pointer;
 }
 
-.crud__table--tbody i:hover {
+/*iconos form*/
+
+.cttbody__modify {
+  color: var(--ligth-yellow-100);
+}
+
+.cttbody__delete {
+  color: var(--dark-red-100);
+}
+
+.cttbody__active {
+  color: var(--dark-green-100);
+}
+
+.cttbody__inactive {
+  color: var(--dark-red-400);
+}
+
+/*aliccar colores y transition a la letras para theme*/
+
+.crud__div--h2 {
   color: var(--dark-black-100);
 }

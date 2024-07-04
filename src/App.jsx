@@ -20,14 +20,13 @@ import Search from "./components/search/Search";
 import PreLoader from "./components/preLoader/PreLoader";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   const listHeaderAlumnos = [
     "avatar",
     "ID alumno",
     "nombre y apellido",
     "email",
     "fecha nacimiento",
+    "curso (id)",
     "estado",
     "modificar",
     "eliminar",
