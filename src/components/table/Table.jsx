@@ -45,7 +45,7 @@ function Table({ entidad, listaCabecera }) {
     <>
       <section className="crud">
         <div className="flexrow crud__div">
-          <h2 className="crud__div--h2">{entidad} Lista</h2>
+          <h2 className="crud__div--h2">Lista {entidad}</h2>
           <div className="flexrow crud__div--div">
             <i className="ri-expand-up-down-line"></i>
             <button
@@ -55,7 +55,7 @@ function Table({ entidad, listaCabecera }) {
                   : dispatch(alumnosFormOn());
               }}
             >
-              <i className="ri-add-line"></i>
+              <i className="ri-user-add-line"></i>
               {entidad}
             </button>
           </div>

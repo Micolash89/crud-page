@@ -24,7 +24,6 @@ function Table2({ entidad, listHeader }) {
         dispatch(loaderOn());
         console.log(result.data.payload);
         setData(result.data.payload);
-        dispatch(messageOk(result.data.message));
       })
       .catch((err) => {
         dispatch(messageError(err.result.data.message));

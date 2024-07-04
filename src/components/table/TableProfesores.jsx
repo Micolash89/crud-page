@@ -41,22 +41,34 @@ function TableProfesores({ item }) {
     <>
       <tr>
         <td>
-          <img src="images/pablo.png" alt="avatar" />
+          <img src={item.url} alt="avatar" title={item.role} />
         </td>
         <td>{item.id_profesor}</td>
-        <td>{item.nombre}</td>
-        <td>{item.apellido}</td>
+        <td>
+          {item.nombre}, {item.apellido}{" "}
+        </td>
+        <td>{item.nombre_curso}</td>
         <td>{item.email}</td>
         <td>{item.telefono}</td>
-        <td>{item.estado}</td>
+        <td>{item.role}</td>
+        <td>
+          <i
+            className={
+              item.estado ? "ri-user-follow-line" : "ri-user-forbid-line"
+            }
+            title={item.estado ? "activo" : "inactivo"}
+          ></i>
+        </td>
         <td className="icon">
           <i
-            className="ri-pencil-line"
+            className="ri-user-settings-line"
             onClick={handleActiveFormUpdate}
             title="modificar"
           ></i>
+        </td>
+        <td className="icon">
           <i
-            className="ri-delete-bin-6-line"
+            className="ri-user-unfollow-line"
             title="eliminar"
             onClick={handleDelete}
           ></i>

@@ -54,22 +54,32 @@ function TableAlumnos({ item }) {
       {dayNow && (
         <tr>
           <td>
-            <img src="images/pablo.png" alt="avatar" />
+            <img src={item.url} alt="avatar" title="alumno" />
           </td>
           <td>{item.id_alumno}</td>
-          <td>{item.nombre}</td>
-          <td>{item.apellido}</td>
+          <td>
+            {item.nombre}, {item.apellido}
+          </td>
           <td>{item.email}</td>
           <td>{dayNow}</td>
-          <td>{item.estado}</td>
+          <td>
+            <i
+              className={
+                item.estado ? "ri-user-follow-line" : "ri-user-forbid-line"
+              }
+              title={item.estado ? "activo" : "inactivo"}
+            ></i>
+          </td>
           <td className="icon">
             <i
-              className="ri-pencil-line"
+              className="ri-user-settings-line"
               title="modificar"
               onClick={handleActiveFormUpdate}
             ></i>
+          </td>
+          <td className="icon">
             <i
-              className="ri-delete-bin-6-line"
+              className="ri-user-unfollow-line"
               title="eliminar"
               onClick={handleDelete}
             ></i>

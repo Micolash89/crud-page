@@ -28,6 +28,7 @@ function ProfesorUpdate() {
     email: "",
     telefono: 0,
     role: "",
+    curso: "",
   });
 
   useEffect(() => {
@@ -39,6 +40,7 @@ function ProfesorUpdate() {
         email: profesorUpdateValue.email,
         telefono: profesorUpdateValue.telefono,
         role: profesorUpdateValue.role,
+        curso: profesorUpdateValue.nombre_curso,
       });
   }, [profesorUpdateState]);
 
@@ -149,6 +151,19 @@ function ProfesorUpdate() {
                     name="telefono"
                     id="phoneInputUpdate"
                     placeholder="########"
+                  />
+                </label>
+
+                <label className="flexcolum" htmlFor="curso__register">
+                  <p>curso</p>
+
+                  <input
+                    onChange={handleInputChange}
+                    value={formData.curso}
+                    type="text"
+                    name="curso"
+                    id="curso__register"
+                    placeholder="nodeJS"
                   />
                 </label>
 

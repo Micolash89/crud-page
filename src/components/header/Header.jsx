@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./header.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { recargarActualizar } from "../../redux/features/RecargarSlice";
 import { logOutSession, setSession } from "../../redux/features/UserSlice";
 import { useEffect } from "react";
@@ -11,16 +11,16 @@ import Cookies from "js-cookie";
 function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation().pathname;
+  const sessionState = useSelector((state) => state.user.session);
+  const sessionUser = useSelector((state) => state.user.user);
+  const theme = useSelector((state) => state.theme.theme);
 
   const handleLogout = () => {
     dispatch(logOutSession());
     Cookies.remove("crudCookieToken");
     navigate("/login");
   };
-
-  const sessionState = useSelector((state) => state.user.session);
-  const sessionUser = useSelector((state) => state.user.user);
-  const theme = useSelector((state) => state.theme.theme);
 
   useEffect(() => {
     const cookieToken = Cookies.get("crudCookieToken");
@@ -73,7 +73,15 @@ function Header() {
   return (
     <>
       <header className={`flexcolum header ${theme}`}>
-        <h1 className="header__h1"> CRUD operaciones</h1>
+        <h1
+          className="header__h1"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          {" "}
+          CRUD operaciones
+        </h1>
         {sessionState && (
           <section className="flexcolum header__section">
             <div className="picture_profile">
@@ -96,7 +104,9 @@ function Header() {
               return (
                 <li
                   key={`${index} itemsHeader`}
-                  className="header__items"
+                  className={`header__items ${
+                    item.link == location ? "header__items--activo" : ""
+                  }`}
                   onClick={() => dispatch(recargarActualizar())}
                 >
                   <Link to={item.link} className="flexrow">

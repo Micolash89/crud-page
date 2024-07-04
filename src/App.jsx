@@ -23,27 +23,27 @@ function App() {
   const [count, setCount] = useState(0);
 
   const listHeaderAlumnos = [
-    "",
+    "avatar",
     "ID alumno",
-    "nombre",
-    "apellido",
+    "nombre y apellido",
     "email",
     "fecha nacimiento",
     "estado",
-    "alta/baja",
-    "",
+    "modificar",
+    "eliminar",
   ];
 
   const listHeaderProfesores = [
-    "",
+    "avatar",
     "ID Profesor",
-    "nombre",
-    "apellido",
+    "nombre y apellido",
+    "curso",
     "email",
     "teléfono",
+    "role",
     "estado",
-    "alta/baja",
-    "",
+    "modificar",
+    "eliminar",
   ];
 
   const listHeaderCursos = ["ID curso", "curso", "profesor", "estado", "ver"];
