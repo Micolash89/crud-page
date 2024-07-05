@@ -50,7 +50,7 @@
 
 .header__section--span:last-child {
   font-size: var(--txt-1);
-  color: var(--ligth-yellow-100);
+  color: var(--ligth-beige-400);
 }
 
 .header__nav--ul {

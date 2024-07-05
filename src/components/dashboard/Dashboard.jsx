@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import "./dashboard.css";
 import ItemDashboard from "./ItemDashboard";
-import { Fade } from "react-awesome-reveal";
 
 function Dashboard() {
   const theme = useSelector((state) => state.theme.theme);

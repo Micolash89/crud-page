@@ -8,8 +8,7 @@
   width: 100%;
   height: 100%;
   transition: background-color 0.6s, color 0.6s;
-
-  background-image: url("../../../public/bbburst.svg");
+  background-image: url("../../assets/bbburst.svg");
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
@@ -23,7 +22,7 @@
   border-radius: var(--radius-4);
   min-width: 250px;
   min-height: 170px;
-  transition: scale 0.6s;
+  transition: background-color 0.6s, color 0.6s, transform 0.9s !important;
   box-shadow: 3px 3px 15px 0px var(--box-shadow);
 }
 
@@ -32,13 +31,6 @@
   font-weight: 600;
   text-transform: uppercase;
   color: var(--ligth-grey-400);
-}
-
-.dashboard__a {
-  /* gap: 15px; */
-  /* opacity: 0; */
-  /* animation: fade-up 0.5s 0.4s backwards; */
-  /* opacity: 1; */
 }
 
 .dashboard__a > div > i {
@@ -79,12 +71,6 @@
 #payments {
   transition: background-color 0.6s, color 0.6s;
 }
-
-/*
---dark-red-200: #fef6fb;
-  --dark-blue-200: #f0f9ff;
-   --ligth-yellow-200: #f2eae1;
-*/
 
 #user {
   /* bacground bradiente */

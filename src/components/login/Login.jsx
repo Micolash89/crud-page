@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./login.css";
 import axios from "axios";
 import { END_POINTS } from "../../service/endPoints";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loaderOff, loaderOn } from "../../redux/features/LoaderSlice";
 import {
   messageError,
@@ -15,7 +15,6 @@ import Cookies from "js-cookie";
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const theme = useSelector((state) => state.theme.state);
 
   const [formaData, setFormData] = useState({
     email: "",

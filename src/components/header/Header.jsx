@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { END_POINTS } from "../../service/endPoints";
 import Cookies from "js-cookie";
+import { messageOk } from "../../redux/features/NotificationSlice";
 
 function Header() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function Header() {
   const handleLogout = () => {
     dispatch(logOutSession());
     Cookies.remove("crudCookieToken");
+    dispatch(messageOk("Sesión cerrada"));
     navigate("/login");
   };
 

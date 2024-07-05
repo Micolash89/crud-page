@@ -4,10 +4,7 @@ import axios from "axios";
 import { END_POINTS } from "../../service/endPoints";
 import { useDispatch, useSelector } from "react-redux";
 import { loaderOff, loaderOn } from "../../redux/features/LoaderSlice";
-import {
-  messageError,
-  messageOk,
-} from "../../redux/features/NotificationSlice";
+import { messageError } from "../../redux/features/NotificationSlice";
 import RowTableCursos from "./RowTableCursos";
 
 function Table2({ entidad, listHeader }) {

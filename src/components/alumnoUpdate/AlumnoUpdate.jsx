@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { END_POINTS } from "../service/endPoints";
+import { alumnoUpdateOff } from "../../redux/features/AlumnoUpdateSlice";
+import { loaderOff, loaderOn } from "../../redux/features/LoaderSlice";
 import axios from "axios";
-import { loaderOff, loaderOn } from "../redux/features/LoaderSlice";
-import { messageError, messageOk } from "../redux/features/NotificationSlice";
-import { recargarActualizar } from "../redux/features/RecargarSlice";
-import { alumnoUpdateOff } from "../redux/features/AlumnoUpdateSlice";
+import { END_POINTS } from "../../service/endPoints";
+import {
+  messageError,
+  messageOk,
+} from "../../redux/features/NotificationSlice";
+import { recargarActualizar } from "../../redux/features/RecargarSlice";
 
 function AlumnosUpdate() {
   const [cursosData, setCursosData] = useState(null);

@@ -65,6 +65,7 @@
   font-size: var(--txt-1);
   background-color: var(--ligth-white-100);
   transition: background-color 0.6s, color 0.6s;
+  color: var(--dark-black-100);
 }
 
 .headerMainLocation {

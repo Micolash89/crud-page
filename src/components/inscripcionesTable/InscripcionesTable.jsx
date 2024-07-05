@@ -12,6 +12,9 @@ import RowInscripciones from "./RowInscripciones";
 
 function InscripcionesTable() {
   const entidad = "inscripciones";
+  const [data, setData] = useState(null);
+  const dispatch = useDispatch();
+  const { id } = useParams();
 
   const listHeader = [
     "ID Inscripcion",
@@ -21,23 +24,11 @@ function InscripcionesTable() {
     "ver",
   ];
 
-  const [data, setData] = useState(null);
-
-  //const recargarPagina = useSelector((state) => state.recargar.state);
-
-  const dispatch = useDispatch();
-
-  const { id } = useParams();
-
-  useEffect(() => {
-    handleSubmit();
-  }, [id]);
-
-  const handleSubmit = () => {
+  const handleGetIncripciones = () => {
+    dispatch(loaderOn());
     axios
-      .get(`${END_POINTS.URL()}/api/${entidad}/obtener${!id ? "" : `/${id}`}`)
+      .get(`${END_POINTS.URL()}/api/${entidad}/obtener/${id}`)
       .then((result) => {
-        dispatch(loaderOn());
         console.log(result.data.payload);
         setData(result.data.payload);
         dispatch(messageOk(result.data.message));
@@ -52,12 +43,8 @@ function InscripcionesTable() {
   };
 
   useEffect(() => {
-    handleSubmit();
+    handleGetIncripciones();
   }, []);
-
-  //   useEffect(() => {
-  //     handleSubmit();
-  //   }, [recargarPagina]);
 
   return (
     <>

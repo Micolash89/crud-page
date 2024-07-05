@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./App.css";
 import "./css/variables.css";
 import "./css/estilosGenericos.css";
@@ -14,7 +13,7 @@ import Table2 from "./components/table2/Table2";
 import ProfesorForm from "./components/form/ProfesorForm";
 import ProfesorUpdate from "./components/profesorUpdate/ProfesorUpdate";
 import AlumnosForm from "./components/form/AlumnoForm";
-import AlumnosUpdate from "./alumnoUpdate/AlumnoUpdate";
+import AlumnosUpdate from "./components/alumnoUpdate/AlumnoUpdate";
 import InscripcionesTable from "./components/inscripcionesTable/InscripcionesTable";
 import Search from "./components/search/Search";
 import PreLoader from "./components/preLoader/PreLoader";
