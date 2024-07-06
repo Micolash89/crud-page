@@ -9,12 +9,15 @@ import {
   messageOk,
 } from "../../redux/features/NotificationSlice";
 import { recargarActualizar } from "../../redux/features/RecargarSlice";
+import Cookies from "js-cookie";
 
 function AlumnosUpdate() {
   const [cursosData, setCursosData] = useState(null);
   const dispatch = useDispatch();
   const alumnoUpdateState = useSelector((state) => state.alumnoUpdate.state);
   const alumnoUpdateValue = useSelector((state) => state.alumnoUpdate.value);
+
+  const token = Cookies.get("crudCookieToken");
 
   const [formData, setFormData] = useState({
     id_alumno: "",
@@ -63,6 +66,9 @@ function AlumnosUpdate() {
     axios
       .put(`${END_POINTS.URL()}/api/alumnos/actualizar`, formData, {
         withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
       .then((response) => {
         console.log(response.data);

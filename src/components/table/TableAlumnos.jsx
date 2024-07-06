@@ -9,6 +9,7 @@ import {
 } from "../../redux/features/NotificationSlice";
 import { recargarActualizar } from "../../redux/features/RecargarSlice";
 import { alumnoUpdateOn } from "../../redux/features/AlumnoUpdateSlice";
+import Cookies from "js-cookie";
 
 function TableAlumnos({ item }) {
   const dispatch = useDispatch();
@@ -22,6 +23,8 @@ function TableAlumnos({ item }) {
     setDayNow(format(now, "es"));
   };
 
+  const token = Cookies.get("crudCookieToken");
+
   useEffect(() => {
     if (!item.fecha_nacimiento) return;
     fechaFormato();
@@ -30,7 +33,12 @@ function TableAlumnos({ item }) {
   const handleDelete = () => {
     dispatch(loaderOn());
     axios
-      .delete(`${END_POINTS.URL()}/api/alumnos/eliminar/${item.id_alumno}`, {})
+      .delete(`${END_POINTS.URL()}/api/alumnos/eliminar/${item.id_alumno}`, {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         console.log(response.data);
         dispatch(messageOk(response.data.message));

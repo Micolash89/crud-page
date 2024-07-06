@@ -10,9 +10,9 @@ import {
 import { recargarActualizar } from "../../redux/features/RecargarSlice";
 import { END_POINTS } from "../../service/endPoints";
 import { profesorUpdateOff } from "../../redux/features/ProfesorUpdateSlice";
+import Cookies from "js-cookie";
 
 function ProfesorUpdate() {
-  /* HACER FORM DE UPDADE CON SU AXIOS PUT*/
   const dispatch = useDispatch();
   const profesorUpdateState = useSelector(
     (state) => state.profesorUpdate.state
@@ -20,6 +20,8 @@ function ProfesorUpdate() {
   const profesorUpdateValue = useSelector(
     (state) => state.profesorUpdate.value
   );
+
+  const token = Cookies.get("crudCookieToken");
 
   const [formData, setFormData] = useState({
     id_profesor: "",
@@ -62,6 +64,9 @@ function ProfesorUpdate() {
     axios
       .put(`${END_POINTS.URL()}/api/profesores/actualizar`, formData, {
         withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
       .then((response) => {
         console.log(response.data);

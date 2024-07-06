@@ -8,21 +8,28 @@ import {
 import { loaderOff, loaderOn } from "../../redux/features/LoaderSlice";
 import { recargarActualizar } from "../../redux/features/RecargarSlice";
 import { profesorUpdateOn } from "../../redux/features/ProfesorUpdateSlice";
+import Cookies from "js-cookie";
 
 function TableProfesores({ item }) {
   const dispatch = useDispatch();
 
   const handleActiveFormUpdate = () => {
-    console.log("dentre");
     dispatch(profesorUpdateOn(item));
   };
+
+  const token = Cookies.get("crudCookieToken");
 
   const handleDelete = () => {
     dispatch(loaderOn());
     axios
       .delete(
         `${END_POINTS.URL()}/api/profesores/eliminar/${item.id_profesor}`,
-        {}
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       )
       .then((response) => {
         console.log(response.data);
