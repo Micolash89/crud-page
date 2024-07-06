@@ -9,12 +9,15 @@ import {
   messageOk,
 } from "../../redux/features/NotificationSlice";
 import { recargarActualizar } from "../../redux/features/RecargarSlice";
+import { Cookies } from "js-cookie";
 
 function AlumnosForm() {
   const dispatch = useDispatch();
   const alumnoFormState = useSelector((state) => state.alumnoForm.state);
 
   const [cursosData, setCursosData] = useState(null);
+
+  const token = Cookies.get("crudCookieToken");
 
   const [formData, setFormData] = useState({
     nombre: "",
@@ -61,6 +64,9 @@ function AlumnosForm() {
     axios
       .post(`${END_POINTS.URL()}/api/alumnos/subir`, formData, {
         withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
       .then((response) => {
         console.log(response.data);
