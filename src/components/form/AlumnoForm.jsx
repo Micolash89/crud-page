@@ -9,7 +9,7 @@ import {
   messageOk,
 } from "../../redux/features/NotificationSlice";
 import { recargarActualizar } from "../../redux/features/RecargarSlice";
-import { Cookies } from "js-cookie";
+import Cookies from "js-cookie";
 
 function AlumnosForm() {
   const dispatch = useDispatch();
