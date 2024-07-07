@@ -14,9 +14,9 @@ function Table2({ entidad, listHeader }) {
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
+    dispatch(loaderOn());
     getEntidad(entidad)
       .then((result) => {
-        dispatch(loaderOn());
         console.log(result.data.payload);
         setData(result.data.payload);
       })

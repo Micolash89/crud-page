@@ -16,9 +16,9 @@ function Table({ entidad, listaCabecera }) {
   const recargarPagina = useSelector((state) => state.recargar.state);
 
   const handleSubmit = () => {
+    dispatch(loaderOn());
     getProfesores(entidad)
       .then((result) => {
-        dispatch(loaderOn());
         console.log(result.data.payload);
         setData(result.data.payload);
       })
