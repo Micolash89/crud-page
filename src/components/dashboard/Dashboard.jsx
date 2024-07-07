@@ -1,37 +1,69 @@
 import { useSelector } from "react-redux";
 import "./dashboard.css";
 import ItemDashboard from "./ItemDashboard";
+import { useEffect, useState } from "react";
+import { getCount } from "../../service/axiosData";
 
 function Dashboard() {
   const theme = useSelector((state) => state.theme.theme);
+  const [cantProfesores, setCantProfesores] = useState(0);
+  const [cantAlumnos, setCantAlumnos] = useState(0);
+  const [cantCursos, setCantCursos] = useState(0);
+  const recargarPagina = useSelector((state) => state.recargar.state);
+
+  const handleCount = () => {
+    getCount("profesores")
+      .then((response) => {
+        setCantProfesores(response.data.payload.total);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    getCount("alumnos")
+      .then((response) => {
+        setCantAlumnos(response.data.payload.total);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    getCount("cursos")
+      .then((response) => {
+        setCantCursos(response.data.payload.total);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    handleCount();
+  }, []);
+
+  useEffect(() => {
+    handleCount();
+  }, [recargarPagina]);
 
   const items = [
-    // {
-    //   id: "student",
-    //   icon: "ri-function-fill ",
-    //   content: "Home",
-    //   span: "123",
-    //   url: "/",
-    // },
     {
       id: "course",
       icon: "ri-briefcase-line",
       content: "profesores",
-      span: "123",
+      span: cantProfesores,
       url: "/profesores",
     },
     {
       id: "payments",
       icon: "ri-graduation-cap-line",
       content: "alumnos",
-      span: "123",
+      span: cantAlumnos,
       url: "/alumnos",
     },
     {
       id: "student",
       icon: "ri-file-list-line",
       content: "cursos",
-      span: "123",
+      span: cantCursos,
       url: "/cursos",
     },
   ];

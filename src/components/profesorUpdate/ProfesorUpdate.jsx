@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import "./profesorUpdate.css";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { loaderOff, loaderOn } from "../../redux/features/LoaderSlice";
 import {
   messageError,
   messageOk,
 } from "../../redux/features/NotificationSlice";
 import { recargarActualizar } from "../../redux/features/RecargarSlice";
-import { END_POINTS } from "../../service/endPoints";
 import { profesorUpdateOff } from "../../redux/features/ProfesorUpdateSlice";
-import Cookies from "js-cookie";
+import { putProfesor } from "../../service/axiosData";
 
 function ProfesorUpdate() {
   const dispatch = useDispatch();
@@ -20,8 +18,6 @@ function ProfesorUpdate() {
   const profesorUpdateValue = useSelector(
     (state) => state.profesorUpdate.value
   );
-
-  const token = Cookies.get("crudCookieToken");
 
   const [formData, setFormData] = useState({
     id_profesor: "",
@@ -61,13 +57,7 @@ function ProfesorUpdate() {
     console.log("entré en el handleSubmit");
     dispatch(loaderOn());
 
-    axios
-      .put(`${END_POINTS.URL()}/api/profesores/actualizar`, formData, {
-        withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    putProfesor(formData)
       .then((response) => {
         console.log(response.data);
         dispatch(messageOk(response.data.message));
@@ -159,7 +149,10 @@ function ProfesorUpdate() {
                   />
                 </label>
 
-                <label className="flexcolum" htmlFor="curso__register">
+                <label
+                  className="flexcolum"
+                  htmlFor="curso__register__update--profesor"
+                >
                   <p>curso</p>
 
                   <input
@@ -167,7 +160,7 @@ function ProfesorUpdate() {
                     value={formData.curso}
                     type="text"
                     name="curso"
-                    id="curso__register"
+                    id="curso__register__update--profesor"
                     placeholder="nodeJS"
                   />
                 </label>
@@ -179,7 +172,7 @@ function ProfesorUpdate() {
                     value={formData.role}
                     onChange={handleInputChange}
                   >
-                    <option selected hidden>
+                    <option disabled value={""}>
                       Seleccione un Rol:
                     </option>
                     <option value="ADMIN">ADMIN</option>

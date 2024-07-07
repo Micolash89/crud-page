@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import "./table2.css";
-import axios from "axios";
-import { END_POINTS } from "../../service/endPoints";
 import { useDispatch, useSelector } from "react-redux";
 import { loaderOff, loaderOn } from "../../redux/features/LoaderSlice";
 import { messageError } from "../../redux/features/NotificationSlice";
 import RowTableCursos from "./RowTableCursos";
+import { getEntidad } from "../../service/axiosData";
 
 function Table2({ entidad, listHeader }) {
   const [data, setData] = useState(null);
@@ -15,8 +14,7 @@ function Table2({ entidad, listHeader }) {
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    axios
-      .get(`${END_POINTS.URL()}/api/${entidad}/obtener`)
+    getEntidad(entidad)
       .then((result) => {
         dispatch(loaderOn());
         console.log(result.data.payload);

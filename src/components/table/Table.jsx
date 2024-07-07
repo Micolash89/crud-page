@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import "./table.css";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import { END_POINTS } from "../../service/endPoints";
 import { loaderOff, loaderOn } from "../../redux/features/LoaderSlice";
 import { messageError } from "../../redux/features/NotificationSlice";
 import TableProfesores from "./TableProfesores";
 import { profesorFormOn } from "../../redux/features/ProfesorFormSlice";
 import TableAlumnos from "./TableAlumnos";
 import { alumnosFormOn } from "../../redux/features/AlumnoFormSlice";
+import { getProfesores } from "../../service/axiosData";
 
 function Table({ entidad, listaCabecera }) {
   const [data, setData] = useState(null);
@@ -17,8 +16,7 @@ function Table({ entidad, listaCabecera }) {
   const recargarPagina = useSelector((state) => state.recargar.state);
 
   const handleSubmit = () => {
-    axios
-      .get(`${END_POINTS.URL()}/api/${entidad}/obtener`)
+    getProfesores(entidad)
       .then((result) => {
         dispatch(loaderOn());
         console.log(result.data.payload);

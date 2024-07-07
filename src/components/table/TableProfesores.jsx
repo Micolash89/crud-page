@@ -1,5 +1,3 @@
-import axios from "axios";
-import { END_POINTS } from "../../service/endPoints";
 import { useDispatch } from "react-redux";
 import {
   messageError,
@@ -8,7 +6,7 @@ import {
 import { loaderOff, loaderOn } from "../../redux/features/LoaderSlice";
 import { recargarActualizar } from "../../redux/features/RecargarSlice";
 import { profesorUpdateOn } from "../../redux/features/ProfesorUpdateSlice";
-import Cookies from "js-cookie";
+import { deleteProfesorId } from "../../service/axiosData";
 
 function TableProfesores({ item }) {
   const dispatch = useDispatch();
@@ -17,20 +15,10 @@ function TableProfesores({ item }) {
     dispatch(profesorUpdateOn(item));
   };
 
-  const token = Cookies.get("crudCookieToken");
-
   const handleDelete = () => {
     dispatch(loaderOn());
-    axios
-      .delete(
-        `${END_POINTS.URL()}/api/profesores/eliminar/${item.id_profesor}`,
-        {
-          withCredentials: true,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+
+    deleteProfesorId(item.id_profesor)
       .then((response) => {
         console.log(response.data);
         dispatch(messageOk(response.data.message));

@@ -36,10 +36,13 @@ function Login() {
         withCredentials: true,
       })
       .then((response) => {
-        console.log(response);
         dispatch(messageOk(response.data.message));
         dispatch(setSession(response.data.profesor));
-        Cookies.set("crudCookieToken", response.data.token, { expires: 30 });
+        Cookies.set("crudCookieToken", response.data.token, {
+          expires: 30,
+          secure: true, // Solo se enviará a través de HTTPS
+          sameSite: "Strict",
+        });
         navigate("/");
       })
       .catch((error) => {

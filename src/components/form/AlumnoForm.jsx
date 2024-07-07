@@ -2,22 +2,18 @@ import { useEffect, useState } from "react";
 import { alumnosFormOff } from "../../redux/features/AlumnoFormSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { loaderOff, loaderOn } from "../../redux/features/LoaderSlice";
-import axios from "axios";
-import { END_POINTS } from "../../service/endPoints";
 import {
   messageError,
   messageOk,
 } from "../../redux/features/NotificationSlice";
 import { recargarActualizar } from "../../redux/features/RecargarSlice";
-import Cookies from "js-cookie";
+import { getListaCursos, postAlumnos } from "../../service/axiosData";
 
 function AlumnosForm() {
   const dispatch = useDispatch();
   const alumnoFormState = useSelector((state) => state.alumnoForm.state);
 
   const [cursosData, setCursosData] = useState(null);
-
-  const token = Cookies.get("crudCookieToken");
 
   const [formData, setFormData] = useState({
     nombre: "",
@@ -46,8 +42,7 @@ function AlumnosForm() {
   };
 
   const getCursos = () => {
-    axios
-      .get(`${END_POINTS.URL()}/api/cursos/obtener`)
+    getListaCursos()
       .then((response) => {
         setCursosData(response.data.payload);
       })
@@ -58,16 +53,9 @@ function AlumnosForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("entré en el handleSubmit");
     dispatch(loaderOn());
-    console.log(formData);
-    axios
-      .post(`${END_POINTS.URL()}/api/alumnos/subir`, formData, {
-        withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+
+    postAlumnos(formData)
       .then((response) => {
         console.log(response.data);
         dispatch(messageOk(response.data.message));
@@ -170,9 +158,10 @@ function AlumnosForm() {
                 <select
                   name="id_curso"
                   // value={formData.id_curso}
+                  defaultValue={formData.id_curso}
                   onChange={handleInputChange}
                 >
-                  <option selected hidden value={""}>
+                  <option disabled value={""}>
                     Seleccione un curso
                   </option>
                   {cursosData &&

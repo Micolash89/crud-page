@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { loaderOff, loaderOn } from "../../redux/features/LoaderSlice";
-import axios from "axios";
-import { END_POINTS } from "../../service/endPoints";
 import {
   messageError,
   messageOk,
 } from "../../redux/features/NotificationSlice";
 import { recargarActualizar } from "../../redux/features/RecargarSlice";
 import { alumnoUpdateOn } from "../../redux/features/AlumnoUpdateSlice";
-import Cookies from "js-cookie";
+import { deleteAlumno } from "../../service/axiosData";
 
 function TableAlumnos({ item }) {
   const dispatch = useDispatch();
@@ -23,8 +21,6 @@ function TableAlumnos({ item }) {
     setDayNow(format(now, "es"));
   };
 
-  const token = Cookies.get("crudCookieToken");
-
   useEffect(() => {
     if (!item.fecha_nacimiento) return;
     fechaFormato();
@@ -32,13 +28,8 @@ function TableAlumnos({ item }) {
 
   const handleDelete = () => {
     dispatch(loaderOn());
-    axios
-      .delete(`${END_POINTS.URL()}/api/alumnos/eliminar/${item.id_alumno}`, {
-        withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+
+    deleteAlumno(item.id_alumno)
       .then((response) => {
         console.log(response.data);
         dispatch(messageOk(response.data.message));

@@ -6,10 +6,9 @@ import {
   messageError,
   messageOk,
 } from "../../redux/features/NotificationSlice";
-import { END_POINTS } from "../../service/endPoints";
-import axios from "axios";
 import { loaderOff, loaderOn } from "../../redux/features/LoaderSlice";
 import { recargarActualizar } from "../../redux/features/RecargarSlice";
+import { postProfesores } from "../../service/axiosData";
 
 function ProfesorForm() {
   const dispatch = useDispatch();
@@ -22,7 +21,7 @@ function ProfesorForm() {
     telefono: 0,
     password: "",
     curso: "",
-    role: "Seleccione un Rol:",
+    role: "",
   });
 
   const handleInputChange = (event) => {
@@ -41,7 +40,7 @@ function ProfesorForm() {
       telefono: 0,
       password: "",
       curso: "",
-      role: "Seleccione un Rol:",
+      role: "",
     });
   };
 
@@ -50,10 +49,7 @@ function ProfesorForm() {
     console.log("entré en el handleSubmit");
     dispatch(loaderOn());
 
-    axios
-      .post(`${END_POINTS.URL()}/api/profesores/subir`, formData, {
-        withCredentials: true,
-      })
+    postProfesores(formData)
       .then((response) => {
         console.log(response.data);
         dispatch(messageOk(response.data.message));
@@ -64,7 +60,7 @@ function ProfesorForm() {
           telefono: 0,
           password: "",
           curso: "",
-          role: "Seleccione un Rol:",
+          role: "",
         });
         dispatch(profesorFormOff());
         dispatch(recargarActualizar());
@@ -78,9 +74,6 @@ function ProfesorForm() {
         window.scrollTo(0, 0);
       });
   };
-
-  //dispatch(profesorFormOff());
-  //dispatch(profesorFormOn());
 
   return (
     <>
@@ -117,6 +110,7 @@ function ProfesorForm() {
                   name="nombre"
                   id="nameInput__register"
                   placeholder="roberto"
+                  autoComplete="given-name"
                 />
               </label>
               <label className="flexcolum" htmlFor="lastNameInput__register">
@@ -128,6 +122,7 @@ function ProfesorForm() {
                   name="apellido"
                   id="lastNameInput__register"
                   placeholder="perez"
+                  autoComplete="family-name"
                 />
               </label>
               <label className="flexcolum" htmlFor="emailInput__register">
@@ -139,6 +134,7 @@ function ProfesorForm() {
                   name="email"
                   id="emailInput__register"
                   placeholder="example@example"
+                  autoComplete="username"
                 />
               </label>
               <label className="flexcolum" htmlFor="phoneInput__register">
@@ -150,6 +146,7 @@ function ProfesorForm() {
                   name="telefono"
                   id="phoneInput__register"
                   placeholder="########"
+                  autoComplete="tel"
                 />
               </label>
 
@@ -162,6 +159,7 @@ function ProfesorForm() {
                   name="password"
                   id="password__password"
                   placeholder="123456"
+                  autoComplete="new-password"
                 />
               </label>
 
@@ -173,6 +171,7 @@ function ProfesorForm() {
                   name="password"
                   id="password__password2"
                   placeholder="123456"
+                  autoComplete="new-password"
                 />
               </label>
 
@@ -186,23 +185,26 @@ function ProfesorForm() {
                   name="curso"
                   id="curso__register"
                   placeholder="nodeJS"
+                  autoComplete="off"
                 />
               </label>
 
-              <label className="flexcolum" htmlFor="role">
-                seleccione un rol
-                <select
-                  name="role"
-                  value={formData.role}
-                  onChange={handleInputChange}
-                >
-                  <option selected hidden value={""}>
-                    Seleccione un Rol
-                  </option>
-                  <option value="ADMIN">ADMIN</option>
-                  <option value="PROFESOR">PROFESOR</option>
-                </select>
-              </label>
+              {formData && (
+                <label className="flexcolum" htmlFor="role">
+                  seleccione un rol
+                  <select
+                    name="role"
+                    defaultValue={formData.role}
+                    onChange={handleInputChange}
+                  >
+                    <option value="" disabled>
+                      Seleccione un Rol
+                    </option>
+                    <option value="ADMIN">ADMIN</option>
+                    <option value="PROFESOR">PROFESOR</option>
+                  </select>
+                </label>
+              )}
 
               <button type="submit">registrar</button>
             </form>
