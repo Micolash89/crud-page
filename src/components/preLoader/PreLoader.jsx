@@ -1,25 +1,26 @@
-import axios from "axios";
 import "./preloader.css";
-import { END_POINTS } from "../../service/endPoints";
 import { useEffect, useState } from "react";
+import Error from "../error/Error";
+import { getProfesoresAll } from "../../service/axiosData";
 
 function PreLoader() {
   const [display, setDisplay] = useState(false);
-  //const [error, setError] = useState(false);
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(0);
   const [string, setString] = useState(".");
 
   const fetchRetry = async () => {
     setDisplay(false);
+    setError(false);
 
-    axios
-      .get(`${END_POINTS.URL()}/api/profesores/obtener`)
+    getProfesoresAll()
       .then((response) => {
         console.log("response del loading", response.data);
         setDisplay(true);
       })
       .catch((err) => {
         console.log(err);
+        setError(true);
       });
   };
 
@@ -33,7 +34,7 @@ function PreLoader() {
         setLoading(loading + 1);
         setString(string.length < 3 ? string + "." : ".");
       }
-    }, 600);
+    }, 1200);
   }, [loading]);
 
   return (
@@ -51,6 +52,7 @@ function PreLoader() {
           </div>
         </div>
         <div className="numb">{loading} %</div>
+        {error && <Error />}
       </div>
     </>
   );

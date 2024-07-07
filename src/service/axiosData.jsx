@@ -20,6 +20,9 @@ export const putProfesor = (data) =>
 export const getProfesores = (entidad) =>
   axios.get(`${END_POINTS.URL()}/api/${entidad}/obtener`);
 
+export const getProfesoresAll = () =>
+  axios.get(`${END_POINTS.URL()}/api/profesores/obtener`);
+
 export const postProfesores = (data) =>
   axios.post(`${END_POINTS.URL()}/api/profesores/subir`, data, authHeader);
 
