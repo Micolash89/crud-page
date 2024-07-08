@@ -194,7 +194,7 @@ function ProfesorForm() {
                   seleccione un rol
                   <select
                     name="role"
-                    defaultValue={formData.role}
+                    value={formData.role}
                     onChange={handleInputChange}
                   >
                     <option value="" disabled>

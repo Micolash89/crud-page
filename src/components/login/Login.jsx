@@ -32,16 +32,12 @@ function Login() {
     event.preventDefault();
     dispatch(loaderOn());
     axios
-      .post(`${END_POINTS.URL()}/api/session/login`, formaData, {
-        withCredentials: true,
-      })
+      .post(`${END_POINTS.URL()}/api/session/login`, formaData, {})
       .then((response) => {
         dispatch(messageOk(response.data.message));
         dispatch(setSession(response.data.profesor));
         Cookies.set("crudCookieToken", response.data.token, {
           expires: 30,
-          secure: true, // Solo se enviará a través de HTTPS
-          sameSite: "Strict",
         });
         navigate("/");
       })
