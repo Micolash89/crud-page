@@ -17,6 +17,7 @@ import AlumnosUpdate from "./components/alumnoUpdate/AlumnoUpdate";
 import InscripcionesTable from "./components/inscripcionesTable/InscripcionesTable";
 import Search from "./components/search/Search";
 import PreLoader from "./components/preLoader/PreLoader";
+import SearchCard from "./components/searchCard/SearchCard";
 
 function App() {
   const listHeaderAlumnos = [
@@ -74,8 +75,12 @@ function App() {
             element={<Table2 entidad="cursos" listHeader={listHeaderCursos} />}
           />
 
-          <Route path="/inscripciones/:id" element={<InscripcionesTable />} />
+          <Route
+            path="/inscripciones/:curso/:id"
+            element={<InscripcionesTable />}
+          />
           <Route path="/search/:filtro" element={<Search />} />
+          <Route path="/:entidad/:id" element={<SearchCard />} />
 
           <Route path="/login" element={<Login />} />
         </Routes>

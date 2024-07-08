@@ -12,7 +12,7 @@ function RowTableCursos({ item }) {
           </td>
           <td>{item.estado}</td>
           <td className="icon">
-            <Link to={`/inscripciones/${item.id_curso}`}>
+            <Link to={`/inscripciones/${item.nombre_curso}/${item.id_curso}`}>
               <i className="ri-eye-line"></i>
             </Link>
           </td>

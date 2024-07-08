@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function RowInscripciones({ item }) {
   const [dayNow, setDayNow] = useState(null);
@@ -12,6 +13,8 @@ function RowInscripciones({ item }) {
     const now = new Date(item.fecha_inscripcion);
     setDayNow(format(now, "es"));
   };
+
+  console.log(item);
 
   useEffect(() => {
     if (!item.fecha_inscripcion) return;
@@ -29,7 +32,9 @@ function RowInscripciones({ item }) {
             {item.nombre_alumno} {item.apellido_alumno}
           </td>
           <td className="icon">
-            <i className="ri-eye-line"></i>
+            <Link to={`/alumnos/${item.id_alumno}`}>
+              <i className="ri-eye-line"></i>
+            </Link>
           </td>
         </tr>
       )}

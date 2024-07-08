@@ -40,6 +40,9 @@ export const putAlumno = (data) =>
 export const deleteAlumno = (id) =>
   axios.delete(`${END_POINTS.URL()}/api/alumnos/eliminar/${id}`, authHeader);
 
+export const getOneEntidad = (entidad, id) =>
+  axios.get(`${END_POINTS.URL()}/api/${entidad}/obtener/${id}`);
+
 /* cursos */
 export const getListaCursos = () =>
   axios.get(`${END_POINTS.URL()}/api/cursos/obtener`);

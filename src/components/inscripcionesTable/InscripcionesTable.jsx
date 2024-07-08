@@ -15,6 +15,7 @@ function InscripcionesTable() {
   const [data, setData] = useState(null);
   const dispatch = useDispatch();
   const { id } = useParams();
+  const { curso } = useParams();
 
   const listHeader = [
     "ID Inscripcion",
@@ -49,7 +50,7 @@ function InscripcionesTable() {
   return (
     <>
       <section className=" main__section mainTable">
-        <h2 className="mainTable__h2">{entidad}</h2>
+        <h2 className="mainTable__h2">curso de {curso}</h2>
         <table className="mainTable__table">
           <thead className="mainTable__table--thead">
             <tr>

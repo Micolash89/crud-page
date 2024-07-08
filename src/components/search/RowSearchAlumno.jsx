@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function RowSearchAlumno({ item }) {
   const [dayNow, setDayNow] = useState(null);
@@ -26,9 +27,20 @@ function RowSearchAlumno({ item }) {
           </td>
           <td>{item.email}</td>
           <td>{dayNow}</td>
-          <td>{item.estado}</td>
+          <td>
+            <i
+              className={
+                item.estado
+                  ? "ri-user-follow-line cttbody__active"
+                  : "ri-user-forbid-line cttbody__inactive"
+              }
+              title={item.estado ? "activo" : "inactivo"}
+            ></i>
+          </td>
           <td className="icon">
-            <i className="ri-eye-line"></i>
+            <Link to={`/alumnos/${item.id_alumno}`} className="icon">
+              <i className="ri-eye-line"></i>
+            </Link>
           </td>
         </tr>
       )}

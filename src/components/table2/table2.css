@@ -79,10 +79,12 @@
 .mainTable__table--tbody i {
   color: var(--ligth-yellow-100);
   font-size: var(--txt-2);
-  cursor: pointer;
 }
 
 .mainTable__table--tbody td,
 .mainTable__table--thead th {
   text-align: center;
+}
+.mainTable__table--tbody > tr > td:last-child > i {
+  cursor: pointer;
 }

@@ -147,6 +147,8 @@
 
 .crud__table--tbody i {
   font-size: var(--txt-6);
+}
+.crud__table--tbody > tr > td:last-child > i {
   cursor: pointer;
 }
 
@@ -161,11 +163,11 @@
 }
 
 .cttbody__active {
-  color: var(--dark-green-100);
+  color: var(--dark-green-100) !important;
 }
 
 .cttbody__inactive {
-  color: var(--dark-red-400);
+  color: var(--dark-red-400) !important;
 }
 
 /*aliccar colores y transition a la letras para theme*/
