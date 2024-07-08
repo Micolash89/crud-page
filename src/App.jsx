@@ -45,7 +45,13 @@ function App() {
     "eliminar",
   ];
 
-  const listHeaderCursos = ["ID curso", "curso", "profesor", "estado", "ver"];
+  const listHeaderCursos = [
+    "ID curso",
+    "curso",
+    "profesor",
+    "inscriptos",
+    "ver",
+  ];
 
   return (
     <>

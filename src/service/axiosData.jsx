@@ -51,3 +51,6 @@ export const getEntidad = (entidad) =>
   axios.get(`${END_POINTS.URL()}/api/${entidad}/obtener`);
 
 /* incripciones */
+
+export const getCantAlumnosXCurso = (id) =>
+  axios.get(`${END_POINTS.URL()}/api/inscripciones/contar/${id}`);
