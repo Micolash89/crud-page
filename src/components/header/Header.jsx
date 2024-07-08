@@ -3,11 +3,12 @@ import "./header.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { recargarActualizar } from "../../redux/features/RecargarSlice";
 import { logOutSession, setSession } from "../../redux/features/UserSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { END_POINTS } from "../../service/endPoints";
 import Cookies from "js-cookie";
 import { messageOk } from "../../redux/features/NotificationSlice";
+import { menuOff } from "../../redux/features/MenuSlice";
 
 function Header() {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ function Header() {
   const sessionState = useSelector((state) => state.user.session);
   const sessionUser = useSelector((state) => state.user.user);
   const theme = useSelector((state) => state.theme.theme);
+  const menu = useSelector((state) => state.menu.state);
 
   const handleLogout = () => {
     dispatch(logOutSession());
@@ -74,7 +76,11 @@ function Header() {
 
   return (
     <>
-      <header className={`flexcolum header ${theme}`}>
+      <header
+        className={`flexcolum header ${theme} ${
+          menu ? "header__MenuShow" : ""
+        }`}
+      >
         <h1
           className="header__h1"
           onClick={() => {
@@ -111,7 +117,13 @@ function Header() {
                   }`}
                   onClick={() => dispatch(recargarActualizar())}
                 >
-                  <Link to={item.link} className="flexrow">
+                  <Link
+                    className="flexrow"
+                    onClick={() => {
+                      dispatch(menuOff());
+                    }}
+                    to={item.link}
+                  >
                     <span>{item.name}</span>
                     <i className={`${item.icon}`}></i>
                   </Link>

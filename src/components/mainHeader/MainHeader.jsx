@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import "./mainHeader.css";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { themeDark, themeLigth } from "../../redux/features/ThemeSlice";
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
+import { menuOn } from "../../redux/features/MenuSlice";
 
 function MainHeader() {
   const [filtro, setFiltro] = useState("");
@@ -57,9 +58,14 @@ function MainHeader() {
         }`}
       >
         <header className={`flexrow main__section--header headerMain `}>
-          <Link to={"/"} className="headerMain__button">
-            <i className="ri-arrow-left-circle-line"></i>
-          </Link>
+          <button
+            className="headerMain__button"
+            onClick={() => {
+              dispatch(menuOn());
+            }}
+          >
+            <i className="ri-menu-line"></i>
+          </button>
 
           <div className="flexrow headerMain__search">
             <label htmlFor="filter" className=" flexrow headerMain__label">

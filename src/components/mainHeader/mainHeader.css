@@ -28,9 +28,13 @@
 .headerMain__button > i {
   font-size: var(--txt-3);
 }
+
 .headerMain__button {
-  transition: scale 0.4s, color 0.4s;
+  background-color: var(--ligth-white-100);
+  transition: background-color 0.6s, color 0.6s, scale 0.4s;
+  display: none;
 }
+
 .headerMain__button:hover {
   scale: 1.2;
   color: var(--ligth-beige-600);
@@ -70,4 +74,10 @@
 
 .headerMainLocation {
   display: none;
+}
+
+@media (max-width: 1000px) {
+  .headerMain__button {
+    display: block;
+  }
 }

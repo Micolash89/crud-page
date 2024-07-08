@@ -8,6 +8,7 @@ import recargarReducer from "./features/RecargarSlice";
 import profesorUpdateReducer from "./features/ProfesorUpdateSlice";
 import alumnoUpdateReducer from "./features/AlumnoUpdateSlice";
 import themeReducer from "./features/ThemeSlice";
+import menuReducer from "./features/MenuSlice";
 
 
 export const store = configureStore({
@@ -21,5 +22,6 @@ export const store = configureStore({
         profesorUpdate: profesorUpdateReducer,
         alumnoUpdate: alumnoUpdateReducer,
         theme: themeReducer,
+        menu: menuReducer,
     }
 });
