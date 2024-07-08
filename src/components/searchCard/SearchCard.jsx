@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./searchCard.css";
 import { useEffect, useState } from "react";
 import { getOneEntidad } from "../../service/axiosData";
@@ -13,6 +13,7 @@ function SearchCard() {
   const dispatch = useDispatch();
   const [data, setData] = useState();
   const [dayNow, setDayNow] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(loaderOn());
@@ -40,10 +41,23 @@ function SearchCard() {
     setDayNow(fechaFormatoFull(data.fecha_nacimiento));
   }, [data]);
 
+  const handleRedirect = () => {
+    navigate(-1);
+  };
+
   return (
     <>
       {data && (
-        <section className="flexrow searchCard ">
+        <section className="flexcolum searchCard ">
+          <section className="searchCard__redirect">
+            <button
+              title="atras"
+              className="searchCard__redirect--button"
+              onClick={handleRedirect}
+            >
+              <i className="ri-arrow-left-double-line"></i>
+            </button>
+          </section>
           <div className="flexrow">
             <section className=" flexcolum searchCard__section scProfile ">
               <div className="searchCard__section--img">
