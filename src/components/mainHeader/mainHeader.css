@@ -80,4 +80,15 @@
   .headerMain__button {
     display: block;
   }
+
+  .header,
+  .headerMain__icon,
+  .headerMain__label > i,
+  .headerMain__button > i {
+    font-size: var(--txt-5) !important;
+  }
+
+  #filter {
+    font-size: var(--txt-3) !important;
+  }
 }

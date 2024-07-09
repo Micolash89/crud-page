@@ -115,3 +115,32 @@
   text-decoration-color: var(--ligth-beige-300); /* Color del subrayado */
   text-decoration-thickness: 1px;
 }
+
+.loginSession__home {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  .loginSession {
+    height: 100vh;
+  }
+
+  .login__container {
+    scale: 1.5;
+  }
+
+  .loginSession__home {
+    position: absolute;
+    display: block;
+    padding: 15px;
+    bottom: 5%;
+    background-color: var(--ligth-white-100);
+    color: var(--dark-black-100);
+    border-radius: var(--radius-6);
+    border: 1px solid var(--dark-black-100);
+    /* font-size: var(--txt-15) !important; */
+  }
+  .loginSession__home > i {
+    font-size: var(--txt-5);
+  }
+}

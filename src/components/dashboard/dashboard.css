@@ -92,10 +92,16 @@
   transform: scale(1.1);
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1000px) {
   .dashboard {
     flex-direction: column !important;
     align-items: center;
     justify-content: center;
+    height: calc(100vh - 90px);
+    gap: 150px;
+  }
+
+  .dashboard__a {
+    scale: 1.5;
   }
 }

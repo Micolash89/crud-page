@@ -53,6 +53,9 @@ function Login() {
   return (
     <>
       <section className="flexcolum login loginSession">
+        <button className="loginSession__home" onClick={() => navigate("/")}>
+          <i className="ri-home-2-line"></i>
+        </button>
         <section className="flexcolum login__container">
           <section className="flexcolum login__title">
             <h2 className="login__section--h2">OPERACIONES CRUD</h2>

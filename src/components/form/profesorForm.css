@@ -67,3 +67,43 @@
   align-items: center;
   gap: 5px;
 }
+
+@media (max-width: 1000px) {
+  .profesorForm {
+    width: 100%;
+    height: 100vh;
+    /* height: 100%; */
+  }
+
+  .profesorForm__container--icon {
+    font-size: var(--txt-5);
+    scale: 1.5;
+    z-index: 5;
+  }
+
+  .profesorForm__container {
+    scale: 1.2;
+  }
+}
+
+@media (max-width: 500px) {
+  .profesorForm__container {
+    scale: 1.7;
+  }
+
+  .profesorForm__container--icon {
+    font-size: var(--txt-5);
+    scale: 1.5;
+    z-index: 5;
+
+    background-color: var(--ligth-white-100);
+    outline: 1px solid var(--dark-black-100);
+    border-radius: 25%;
+  }
+}
+
+@media (max-width: 300px) {
+  .profesorForm__container {
+    scale: 1.7;
+  }
+}

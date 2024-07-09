@@ -139,7 +139,13 @@ function Header() {
             <span>Salir</span>
           </button>
         ) : (
-          <Link to={"/login"} className="flexrow header__logout">
+          <Link
+            to={"/login"}
+            className="flexrow header__logout"
+            onClick={() => {
+              dispatch(menuOff());
+            }}
+          >
             <i className="ri-user-line"></i>
             <span>Inicio Session</span>
           </Link>
