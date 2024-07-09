@@ -1,4 +1,4 @@
-# Proyecto Frontend - Fullstack Node.js (Codo a Codo)
+# Proyecto Frontend - Fullstack Node.js (Codo a Codo) <img src="https://user-images.githubusercontent.com/83146564/137408912-013f0d0c-37d1-4dc2-a1b5-77356c1003f3.png" alt="CodoCodoLogo" width=10% />
 
 ## Descripción
 
@@ -6,44 +6,24 @@ Este proyecto es el frontend del proyecto integrador que permite gestionar profe
 
 ---
 
-## Dependencias
+## Deploy
 
-- `@emotion/react`: ^11.11.4
-- `@reduxjs/toolkit`: ^2.2.5
-- `axios`: ^1.7.2
-- `js-cookie`: ^3.0.5
-- `react`: ^18.2.0
-- `react-dom`: ^18.3.1
-- `react-redux`: ^9.1.2
-- `react-router-dom`: ^6.23.1
-
-## Dependencias de desarrollo
-
-- `@types/react`: ^18.2.66
-- `@types/react-dom`: ^18.2.22
-- `@vitejs/plugin-react`: ^4.2.1
-- `eslint`: ^8.57.0
-- `eslint-plugin-react`: ^7.34.1
-- `eslint-plugin-react-hooks`: ^4.6.0
-- `eslint-plugin-react-refresh`: ^0.4.6
-- `gh-pages`: ^6.1.1
-- `vite`: ^5.2.0
-
-## Scripts
-
-- `dev`: Inicia la aplicación en modo desarrollo.
-- `build`: Construye la aplicación para producción.
-- `lint`: Ejecuta ESLint para analizar el código.
-- `preview`: Previsualiza la versión de producción.
-- `deploy`: Despliega la aplicación en GitHub Pages.
+- El proyecto se encuentra desplegado en Github Pages [Link](https://micolash89.github.io/crud-page/).
+- El repositorio al BackEnd [Link](https://github.com/Micolash89/backend-crud-API-rest-cac)
 
 ## Dependencias
 
 A continuación se detallan las dependencias utilizadas en este proyecto:
 
-| Nombre          | Versión |
-| --------------- | ------- |
-| @faker-js/faker | ^8.4.1  |
+| Nombre           | Versión |
+| ---------------- | ------- |
+| react-router-dom | ^6.23.1 |
+| react-redux      | ^9.1.2  |
+| axios            | ^1.7.2  |
+| @reduxjs/toolkit | ^2.2.5  |
+| js-cookie        | ^3.0.5  |
+| react            | ^18.2.0 |
+| react-dom        | ^18.3.1 |
 
 Puedes copiar y pegar este contenido en tu archivo `README.md`.
 
@@ -63,44 +43,13 @@ A continuación se muestran algunas capturas de pantalla del proyecto:
 
 ---
 
-## Instalación
-
-1. Clonar el repositorio:
-
-   ```bash
-   git clone https://github.com/tu-usuario/nombre-del-repo.git
-   ```
-
-2. Instalar las dependencias:
-   ```bash
-   cd nombre-del-repo
-   npm install
-   ```
-
 ## Uso
 
 Para iniciar la aplicación en modo desarrollo:
 
 ```bash
+npm install
 npm run dev
-```
-
-Para crear una versión de producción:
-
-```bash
-npm run build
-```
-
-Para previsualizar la versión de producción:
-
-```bash
-npm run preview
-```
-
-Para desplegar la aplicación en GitHub Pages:
-
-```bash
-npm run deploy
 ```
 
 ## Autor
