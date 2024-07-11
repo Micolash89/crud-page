@@ -20,7 +20,6 @@ function TableProfesores({ item }) {
 
     deleteProfesorId(item.id_profesor)
       .then((response) => {
-        console.log(response.data);
         dispatch(messageOk(response.data.message));
         dispatch(recargarActualizar());
       })

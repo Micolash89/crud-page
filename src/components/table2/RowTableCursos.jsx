@@ -8,7 +8,6 @@ function RowTableCursos({ item }) {
   const handleCantCursos = () => {
     getCantAlumnosXCurso(item.id_curso)
       .then((res) => {
-        console.log(res.data);
         setData(res.data.payload.total);
       })
       .catch((err) => {

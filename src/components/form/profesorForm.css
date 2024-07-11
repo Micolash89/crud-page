@@ -68,6 +68,10 @@
   gap: 5px;
 }
 
+.invalidPassword {
+  outline: 1px solid var(--dark-red-100);
+}
+
 @media (max-width: 1000px) {
   .profesorForm {
     width: 100%;

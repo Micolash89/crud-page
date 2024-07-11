@@ -17,7 +17,6 @@ function Table2({ entidad, listHeader }) {
     dispatch(loaderOn());
     getEntidad(entidad)
       .then((result) => {
-        console.log(result.data.payload);
         setData(result.data.payload);
       })
       .catch((err) => {

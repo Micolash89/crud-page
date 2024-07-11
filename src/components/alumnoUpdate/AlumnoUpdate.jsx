@@ -58,12 +58,11 @@ function AlumnosUpdate() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("entré en el handleSubmit");
+
     dispatch(loaderOn());
 
     putAlumno(formData)
       .then((response) => {
-        console.log(response.data);
         dispatch(messageOk(response.data.message));
         dispatch(alumnoUpdateOff());
         dispatch(recargarActualizar());

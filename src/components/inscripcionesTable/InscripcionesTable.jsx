@@ -30,7 +30,6 @@ function InscripcionesTable() {
     axios
       .get(`${END_POINTS.URL()}/api/${entidad}/obtener/${id}`)
       .then((result) => {
-        console.log(result.data.payload);
         setData(result.data.payload);
         dispatch(messageOk(result.data.message));
       })

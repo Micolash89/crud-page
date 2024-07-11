@@ -20,7 +20,6 @@ function SearchCard() {
 
     getOneEntidad(entidad, id)
       .then((response) => {
-        console.log("profesor----");
         setData(response.data.payload);
 
         if (entidad == "alumnos")
@@ -33,7 +32,6 @@ function SearchCard() {
       .finally(() => {
         dispatch(loaderOff());
       });
-    console.log(data);
   }, []);
 
   useEffect(() => {

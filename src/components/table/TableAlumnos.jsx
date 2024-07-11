@@ -31,7 +31,6 @@ function TableAlumnos({ item }) {
 
     deleteAlumno(item.id_alumno)
       .then((response) => {
-        console.log(response.data);
         dispatch(messageOk(response.data.message));
         dispatch(recargarActualizar());
       })
@@ -44,7 +43,6 @@ function TableAlumnos({ item }) {
   };
 
   const handleActiveFormUpdate = () => {
-    console.log("dentre");
     dispatch(alumnoUpdateOn(item));
   };
 

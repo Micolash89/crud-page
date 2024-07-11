@@ -15,7 +15,6 @@ function PreLoader() {
 
     getProfesoresAll()
       .then((response) => {
-        console.log("response del loading", response.data);
         setDisplay(true);
       })
       .catch((err) => {

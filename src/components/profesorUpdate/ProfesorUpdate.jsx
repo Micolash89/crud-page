@@ -54,12 +54,11 @@ function ProfesorUpdate() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("entré en el handleSubmit");
+
     dispatch(loaderOn());
 
     putProfesor(formData)
       .then((response) => {
-        console.log(response.data);
         dispatch(messageOk(response.data.message));
         dispatch(profesorUpdateOff());
         dispatch(recargarActualizar());

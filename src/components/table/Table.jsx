@@ -19,7 +19,6 @@ function Table({ entidad, listaCabecera }) {
     dispatch(loaderOn());
     getProfesores(entidad)
       .then((result) => {
-        console.log(result.data.payload);
         setData(result.data.payload);
       })
       .catch((err) => {

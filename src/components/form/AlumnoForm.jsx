@@ -57,7 +57,6 @@ function AlumnosForm() {
 
     postAlumnos(formData)
       .then((response) => {
-        console.log(response.data);
         dispatch(messageOk(response.data.message));
         setFormData({
           nombre: "",
@@ -81,7 +80,6 @@ function AlumnosForm() {
 
   useEffect(() => {
     getCursos();
-    console.log(cursosData);
   }, []);
 
   return (

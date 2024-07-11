@@ -14,8 +14,6 @@ function RowInscripciones({ item }) {
     setDayNow(format(now, "es"));
   };
 
-  console.log(item);
-
   useEffect(() => {
     if (!item.fecha_inscripcion) return;
     fechaFormato();

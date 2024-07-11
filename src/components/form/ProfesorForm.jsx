@@ -13,6 +13,8 @@ import { postProfesores } from "../../service/axiosData";
 function ProfesorForm() {
   const dispatch = useDispatch();
   const profesorFormState = useSelector((state) => state.profesorForm.state);
+  const [passwordCheck, setPasswordCheck] = useState(true);
+  const [password2, setPassword2] = useState("");
 
   const [formData, setFormData] = useState({
     nombre: "",
@@ -23,6 +25,18 @@ function ProfesorForm() {
     curso: "",
     role: "",
   });
+
+  const handlePasswordCheck = (e) => {
+    if (e.target.name == "password2") {
+      e.target.value != formData.password
+        ? setPasswordCheck(true)
+        : setPasswordCheck(false);
+      setPassword2(e.target.value);
+    } else if (e.target.name == "password")
+      e.target.value != password2
+        ? setPasswordCheck(true)
+        : setPasswordCheck(false);
+  };
 
   const handleInputChange = (event) => {
     setFormData({
@@ -46,12 +60,11 @@ function ProfesorForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("entré en el handleSubmit");
+
     dispatch(loaderOn());
 
     postProfesores(formData)
       .then((response) => {
-        console.log(response.data);
         dispatch(messageOk(response.data.message));
         setFormData({
           nombre: "",
@@ -154,7 +167,10 @@ function ProfesorForm() {
                 Password
                 <input
                   value={formData.password}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    handleInputChange(e);
+                    handlePasswordCheck(e);
+                  }}
                   type="password"
                   name="password"
                   id="password__password"
@@ -166,12 +182,14 @@ function ProfesorForm() {
               <label className="flexcolum" htmlFor="password__password2">
                 repetir password
                 <input
+                  className={passwordCheck ? "invalidPassword" : ""}
                   // onChange={handleInputChange}
                   type="password"
-                  name="password"
+                  name="password2"
                   id="password__password2"
                   placeholder="123456"
                   autoComplete="new-password"
+                  onChange={handlePasswordCheck}
                 />
               </label>
 

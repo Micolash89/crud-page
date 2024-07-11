@@ -45,7 +45,6 @@ function Search() {
         withCredentials: true,
       })
       .then((response) => {
-        console.log(response.data);
         dispatch(messageOk(response.data.message));
         setDataProfesores(response.data.payload.profesores.payload);
         setDataAlumnos(response.data.payload.alumnos.payload);
