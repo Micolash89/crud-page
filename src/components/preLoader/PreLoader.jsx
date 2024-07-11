@@ -30,7 +30,7 @@ function PreLoader() {
 
   useEffect(() => {
     setTimeout(() => {
-      if (loading < 100 && !display) {
+      if (loading < 100 && !display && !error) {
         setLoading(loading + 1);
         setString(string.length < 3 ? string + "." : ".");
       }
