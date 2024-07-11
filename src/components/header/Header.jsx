@@ -67,11 +67,11 @@ function Header() {
       link: "/cursos",
       icon: "ri-file-list-line",
     },
-    {
-      name: "Perfil",
-      link: "/perfil",
-      icon: "ri-sound-module-line",
-    },
+    // {
+    //   name: "Perfil",
+    //   link: "/perfil",
+    //   icon: "ri-sound-module-line",
+    // },
   ];
 
   return (
