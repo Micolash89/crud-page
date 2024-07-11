@@ -2,15 +2,24 @@
 
 ## Descripción
 
-Este proyecto es el frontend del API rest del curso de codo a codo para la gestión educativa, permitiendo la administración de profesores, alumnos, cursos e inscripciones. Está desarrollado utilizando React y Vite para ofrecer una interfaz de usuario rápida y eficiente. El backend de este proyecto está construido con Node.js y utiliza una base de datos MySQL alojada en Clever Cloud.
+Este proyecto es el **_frontend_** del API rest del curso **_full stack NodeJs_** de codo a codo para la gestión educativa, permitiendo la administración de profesores, alumnos, cursos e inscripciones. Está desarrollado utilizando **_React_** y **_Vite_** para ofrecer una interfaz de usuario rápida y eficiente. El **_backend_** de este proyecto está construido con **_Node.js_** y utiliza una base de datos **_MySQL_**.
 
 ---
 
+<div align="center">
+    
+| [<img src="https://github.com/tandpfun/skill-icons/raw/main/icons/NodeJS-Dark.svg" width=60><br><sub>Node.js</sub>](https://expressjs.com/) | [<img src="https://github.com/tandpfun/skill-icons/raw/main/icons/React-Dark.svg" width=60><br><sub>React</sub>](https://react.dev/) | [<img src="https://github.com/tandpfun/skill-icons/raw/main/icons/Vite-Dark.svg" width=60><br><sub>Vite</sub>](https://vitejs.dev/) | [<img src="https://github.com/tandpfun/skill-icons/raw/main/icons/Npm-Dark.svg" width=60><br><sub>npm</sub>](https://www.npmjs.com/) |
+| :---: | :---: | :---: | :---: |
+
+</div>
+
 ## Deploy
 
-- El proyecto se encuentra desplegado en Github Pages [Link](https://micolash89.github.io/crud-page/).
-- Repositorio al código backend [Link](https://github.com/Micolash89/backend-crud-API-rest-cac).
-- El backend se encuentra desplegado en Render [Link](https://backend-crud-api-rest-cac.onrender.com).
+- El **_frontend_** se encuentra desplegado en **_Github Pages_** [Link](https://micolash89.github.io/crud-page/).
+
+- Repositorio al código **_backend_** [Link](https://github.com/Micolash89/backend-crud-API-rest-cac).
+
+- El **_backend_** se encuentra desplegado en **_Render_** [Link](https://backend-crud-api-rest-cac.onrender.com).
 
 ## Dependencias
 
